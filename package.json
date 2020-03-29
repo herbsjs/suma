@@ -1,0 +1,28 @@
+{
+  "name": "suma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 999999 --colors --recursive ./test"
+  },
+  "directories": {
+    "lib": "src",
+    "test": "test",
+    "example": "examples"
+  },
+  "engines": {
+    "node": ">= 12.3.0"
+  },
+  "keywords": [
+    "entity",
+    "value object",
+    "validation"
+  ],
+  "devDependencies": {
+    "mocha": "^7.1.1"
+  },
+  "author": "David Lojudice Sobrinho",
+  "license": "MIT",
+  "dependencies": {}
+}

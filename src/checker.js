@@ -1,0 +1,79 @@
+class Checker {
+
+    static isFunction(value) {
+        return typeof value === 'function'
+    }
+
+    static isDefined(value) {
+        return value !== null && value !== undefined
+    }
+
+    static isArray(value) {
+        return {}.toString.call(value) === '[object Array]'
+    }
+
+    static isString(value) {
+        return typeof value === 'string' || value instanceof String
+    }
+
+    static isBoolean(value) {
+        return (value === false || value === true)
+    }
+
+    static isNumber(value) {
+        return typeof value === 'number'
+    }
+
+    static isDate(obj) {
+        return obj instanceof Date
+    }
+
+    static isObject(obj) {
+        return obj === Object(obj)
+    }
+
+    static isEmpty(value) {
+        if (!this.isDefined(value)) return true
+
+        if (this.isFunction(value)) return false
+
+        if (this.isString(value)) {
+            const EMPTY_STRING_REGEXP = /^\s*$/
+            return EMPTY_STRING_REGEXP.test(value)
+        }
+
+        if (this.isArray(value)) return value.length === 0
+
+        if (this.isDate(value)) return false
+
+        if (this.isObject(value)) {
+            // If it finds at least one property we consider it non empty
+            for (const attr in value) {
+                return false
+            }
+            return true
+        }
+
+        return false
+    }
+
+    static isTooShort(value, minimum) {
+        if (!this.isNumber(minimum)) throw Error(`Invalid minimum length. It must be a number.`)
+        const length = value.length
+        return length < minimum 
+    }
+
+    static isTooLong(value, maximum) {
+        if (!this.isNumber(maximum)) throw Error(`Invalid maximum length. It must be a number.`)
+        const length = value.length
+        return length > maximum 
+    }
+    static isWrongLength(value, expectedLength) {
+        if (!this.isNumber(expectedLength)) throw Error(`Invalid length. It must be a number.`)
+        const length = value.length
+        return length !== expectedLength 
+    }
+    
+}
+
+module.exports = Checker
