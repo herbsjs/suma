@@ -12,7 +12,7 @@ function length(value, options) {
     for (const [validator, param] of Object.entries(options)) {
         const lengthChecker = lengthCheckers[validator]
         if (lengthChecker === undefined) throw Error(`Unknown length validator "${validator}"`)
-        const result = lengthChecker.func(value, param)
+        const result = checker.isDefined(value) && lengthChecker.func(value, param)
         if (result) {
             results = results || []
             results.push({ error: lengthChecker.err, values: { length: param } })

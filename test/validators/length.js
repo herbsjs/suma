@@ -7,8 +7,11 @@ describe('length validation', () => {
     it('does allows values with the right length', () => {
         const samples = [
             ['text', { minimum: 0 }],
+            [null, { minimum: 0 }],
             ['text', { maximum: 100 }],
-            ['text', { is: 4 }]
+            [null, { maximum: 100 }],
+            ['text', { is: 4 }],
+            [null, { is: 4 }]
         ]
         for (const value of samples) {
             const validations = { length: value[1] }

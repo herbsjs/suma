@@ -81,6 +81,31 @@ const result = validate(value, validations)
 } */
 ```
 
+#### Numericality
+
+```javascript
+const value = 123.4
+const validations = {
+    equalTo: 123,
+    greaterThan: 200,
+    greaterThanOrEqualTo: 123,
+    lessThan: 0,
+    lessThanOrEqualTo: 123,
+    onlyInteger: true
+}
+const result = validate(value, validations) 
+/* {
+    value: 'john',
+    errors: [
+        { notEqualTo: 123 },
+        { notGreaterThan: 200 },
+        { notLessThan: 0 },
+        { notLessThanOrEqualTo: 123 },
+        { notAnInteger: true }
+    ]
+} */
+```
+
 #### Type
 
 Type validator ensures a value is of the correct JavaScript type:
@@ -110,13 +135,18 @@ const result = validate(value, validations)
 
 ```
 
+### Null Values
+
+The `length` and `numericality` validators won't validate a value if it's `null`.
+To ensure your your value is not null, use `allowNull:false`.
+
 ## TODO
 
 Validators:
 - [X] presence / null
 - [X] length 
 - [X] type 
-- [ ] numericality (greater than, equal to, is integer, etc)
+- [X] numericality (greater than, equal to, is integer, etc)
 - [ ] format - regex
 - [ ] date - earliest, latest
 - [ ] common formats - url, email, etc
@@ -126,6 +156,7 @@ Validators:
 Features:
 - [X] Error message only
 - [X] No dependency 
+- [ ] Doc every validators property
 - [ ] Allow a custom functions for validaton
 - [ ] Allow a conditional `if` functions for validaton
 - [ ] Be able to inject a diferent `checker`
