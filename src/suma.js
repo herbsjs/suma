@@ -3,6 +3,7 @@ const validators = {
     allowNull: require('./validators/allowNull'),
     type: require('./validators/type'),
     length: require('./validators/length'),
+    numericality: require('./validators/numericality'),
 }
 
 function validate(value, validations) {

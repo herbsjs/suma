@@ -5,6 +5,12 @@ const codes = {
     isTooShort: 'IS_TOO_SHORT',
     isTooLong: 'IS_TOO_LONG',
     isWrongLength : 'WRONG_LENGTH',
+    notGreaterThan: 'notGreaterThan',
+    notGreaterThanOrEqualTo: 'notGreaterThanOrEqualTo',
+    notEqualTo: 'notEqualTo',
+    notLessThan: 'notLessThan',
+    notLessThanOrEqualTo: 'notLessThanOrEqualTo',
+    notAnInteger: 'notAnInteger'
 }
 
 module.exports = codes

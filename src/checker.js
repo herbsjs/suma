@@ -73,7 +73,36 @@ class Checker {
         const length = value.length
         return length !== expectedLength 
     }
+
+    static isEqualTo(left, right) {
+        if (!this.isNumber(right)) throw Error(`Invalid 'Equal To'. It must be a number.`)
+        return left === right 
+    }
+
+    static isGreaterThan(left, right) {
+        if (!this.isNumber(right)) throw Error(`Invalid 'Greater Than'. It must be a number.`)
+        return left > right 
+    }
+
+    static isGreaterThanOrEqualTo(left, right) {
+        if (!this.isNumber(right)) throw Error(`Invalid 'Greater Than Or Equal To'. It must be a number.`)
+        return left >= right 
+    }
+
+    static isLessThan(left, right) {
+        if (!this.isNumber(right)) throw Error(`Invalid 'Less Than'. It must be a number.`)
+        return left < right 
+    }
+
+    static isLessThanOrEqualTo(left, right) {
+        if (!this.isNumber(right)) throw Error(`Invalid 'Less Than Or Equal To'. It must be a number.`)
+        return left <= right 
+    }
     
+    static isInteger(value) {
+        return this.isNumber(value) && value % 1 === 0;
+    }
+
 }
 
 module.exports = Checker
