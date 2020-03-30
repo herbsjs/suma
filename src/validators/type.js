@@ -13,7 +13,7 @@ function type(value, options) {
     const typeChecker = typeCheckers.get(options)
     if (typeChecker === undefined) throw Error(`Unknown type validator for type "${options}"`)
     const result = typeChecker(value)
-    return result ? null : { error: err.wrongType, values: { type: options.name } }
+    return result ? null : { [err.wrongType]: options.name }
 }
 
 module.exports = type 

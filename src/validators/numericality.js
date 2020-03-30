@@ -31,9 +31,20 @@ const numericalityCheckers = {
 function numericality(value, options) {
     let results = null
     for (const [validator, param] of Object.entries(options)) {
+        // ignore Null
+        if (!checker.isDefined(value)) continue 
+        
         const numChecker = numericalityCheckers[validator]
         if (numChecker === undefined) throw Error(`Unknown numericality validator "${validator}"`)
-        const result = checker.isDefined(value) && numChecker.func(value, param)
+        
+        // numericality: does not validate if it not a number
+        if (!checker.isNumber(value)) {
+            results = results || []
+            results.push({ [err.notANumber]: param })
+            continue
+        }
+
+        const result = numChecker.func(value, param)
         if (result) {
             results = results || []
             results.push({ [numChecker.err]: param })

@@ -30,16 +30,17 @@ describe('length validation', () => {
 
     it('does not allows values with the wrong length', () => {
         const samples = [
-            ['text', 'minimum', 5, err.isTooShort],
-            ['text', 'maximum', 3, err.isTooLong],
-            ['text', 'is', 3, err.isWrongLength],
+            ['text', { minimum: 5 }, err.isTooShort],
+            ['text', { maximum: 3 }, err.isTooLong],
+            ['text', { is: 3 }, err.wrongLength],
         ]
         for (const value of samples) {
-            const lengthObj = {}
-            lengthObj[value[1]] = value[2]
-            const validations = { length: lengthObj }
+            const validations = { length: value[1] }
             const ret = validate(value[0], validations)
-            assert.deepStrictEqual(ret, { value: value[0], errors: [{ error: value[3], values: { length: value[2] } }] })
+            assert.deepStrictEqual(ret, {
+                value: value[0],
+                errors: [{ [value[2]]: value[1][Object.keys(value[1])[0]] }]
+            })
         }
     })
 
@@ -51,10 +52,11 @@ describe('length validation', () => {
         assert.deepStrictEqual(ret, {
             value: value,
             errors: [
-                { error: err.isTooShort, values: { length: 5 } },
-                { error: err.isTooLong, values: { length: 3 } },
-                { error: err.isWrongLength, values: { length: 3 } },
+                { isTooShort: 5 },
+                { isTooLong: 3 },
+                { wrongLength: 3 }
             ]
         })
+
     })
 })

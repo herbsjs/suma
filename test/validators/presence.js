@@ -34,9 +34,25 @@ describe('presence validation', () => {
             undefined
         ]
         for (const value of samples) {
+            const validations = { presence: true }
+            const ret = validate(value, validations)
+            assert.deepStrictEqual(ret, { value: value, errors: [{ [err.cantBeEmpty]: true }] })
+        }
+    })
+
+    it('does allow empty values', () => {
+        const samples = [
+            {},
+            [],
+            '',
+            ' ',
+            null,
+            undefined
+        ]
+        for (const value of samples) {
             const validations = { presence: false }
             const ret = validate(value, validations)
-            assert.deepStrictEqual(ret, { value: value, errors: [{ error: err.cantBeEmpty, values: null }] })
+            assert.deepStrictEqual(ret, { value: value, errors: [] })
         }
     })
 })

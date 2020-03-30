@@ -36,7 +36,19 @@ describe('allow null validation', () => {
         for (const value of samples) {
             const validations = { allowNull: true }
             const ret = validate(value, validations)
-            assert.deepStrictEqual(ret, { value: value, errors: [{ error: err.cantBeNull, values: null }] })
+            assert.deepStrictEqual(ret, { value: value, errors: [{ [err.cantBeNull]: true }] })
+        }
+    })
+
+    it('does allow null values', () => {
+        const samples = [
+            null,
+            undefined
+        ]
+        for (const value of samples) {
+            const validations = { allowNull: false }
+            const ret = validate(value, validations)
+            assert.deepStrictEqual(ret, { value: value, errors: [] })
         }
     })
 })

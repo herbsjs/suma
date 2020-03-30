@@ -36,12 +36,12 @@ describe('suma', () => {
             }
             const ret = validate(value, validations)
             assert.deepStrictEqual(ret, {
-                value: value,
+                value: 'text',
                 errors: [
-                    { error: err.wrongType, values: { type: 'Number' } },
-                    { error: err.isTooShort, values: { length: 5 } },
-                    { error: err.isTooLong, values: { length: 3 } },
-                    { error: err.isWrongLength, values: { length: 3 } },
+                    { wrongType: 'Number' },
+                    { isTooShort: 5 },
+                    { isTooLong: 3 },
+                    { wrongLength: 3 }
                 ]
             })
         })

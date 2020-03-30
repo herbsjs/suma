@@ -54,7 +54,7 @@ describe('type validation', () => {
         ]
         for (const value of samples) {
             const ret = validateTypeTest(value[0], value[1])
-            assert.deepStrictEqual(ret, { value: value[1], errors: [{ error: err.wrongType, values: { type: value[0].name } }] })
+            assert.deepStrictEqual(ret, { value: value[1], errors: [{ [err.wrongType]: value[0].name }] })
         }
     })
 })

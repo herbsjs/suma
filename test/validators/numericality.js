@@ -47,12 +47,18 @@ describe('numericality validation', () => {
     it('does not allows invalid numeric values', () => {
         const samples = [
             [0, { equalTo: 1 }, err.notEqualTo],
+            ['0', { equalTo: 1 }, err.notANumber],
             [0, { greaterThan: 1 }, err.notGreaterThan],
+            ['0', { greaterThan: 1 }, err.notANumber],
             [0, { greaterThanOrEqualTo: 1 }, err.notGreaterThanOrEqualTo],
+            ['0', { greaterThanOrEqualTo: 1 }, err.notANumber],
             [1, { lessThan: 0 }, err.notLessThan],
+            ['1', { lessThan: 0 }, err.notANumber],
             [1, { lessThanOrEqualTo: 0 }, err.notLessThanOrEqualTo],
+            ['1', { lessThanOrEqualTo: 0 }, err.notANumber],
             [1.1, { onlyInteger: true }, err.notAnInteger],
-            ['a', { onlyInteger: true }, err.notAnInteger],
+            ['1.1', { onlyInteger: true }, err.notANumber],
+            ['a', { onlyInteger: true }, err.notANumber],
         ]
         for (const value of samples) {
             const validations = { numericality: value[1] }
