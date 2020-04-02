@@ -11,7 +11,11 @@ const codes = {
     notLessThan: 'notLessThan',
     notLessThanOrEqualTo: 'notLessThanOrEqualTo',
     notAnInteger: 'notAnInteger',
-    notANumber: 'notANumber'
+    notANumber: 'notANumber',
+    tooEarly: 'tooEarly',
+    tooLate: 'tooLate',
+    notAt: 'notAt',
+    notADate: 'notADate'
 }
 
 module.exports = codes

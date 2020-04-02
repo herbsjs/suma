@@ -103,6 +103,20 @@ class Checker {
         return this.isNumber(value) && value % 1 === 0;
     }
 
+    static isBeforeThan(value, param) {
+        if (!this.isDate(value)) throw Error(`Invalid value. It must be a date.`)
+        return value < param 
+    }
+
+    static isAfterThan(value, param) {
+        if (!this.isDate(value)) throw Error(`Invalid value. It must be a date.`)
+        return value > param 
+    }
+
+    static isAt(value, param) {
+        if (!this.isDate(value)) throw Error(`Invalid value. It must be a date.`)
+        return value.valueOf() === param.valueOf() 
+    }
 }
 
 module.exports = Checker

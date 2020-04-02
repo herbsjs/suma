@@ -2,7 +2,9 @@
 
 # Suma
 
-Suma helps with single value validations emiting error codes only
+Suma helps with single value validations.
+
+Extensible, test covered and errors code only!
 
 ### Installing
     $ npm install suma
@@ -15,9 +17,7 @@ const validations = { presence: true }
 const result = validate(value, validations) 
 /* {
     value: null,
-    errors: [
-        { error: 'CANT_BE_EMPTY', values: null }
-    ]
+    errors: [{ cantBeEmpty: true }]
 } */
 ```
 
@@ -25,19 +25,21 @@ const result = validate(value, validations)
 
 #### Presence
 
+`presence` (boolean) - Validates that the specified value is not empty.
+
 ```javascript
 const value = ''
 const validations = { presence: true }
 const result = validate(value, validations) 
 /* {
     value: '',
-    errors: [
-        { error: 'CANT_BE_EMPTY', values: null }
-    ]
+    errors: [{ cantBeEmpty: true }]
 } */
 ```
 
 #### Allow Null
+
+`allowNull` (boolean) - Validates that the specified value is not `null` or `undefined`.
 
 ```javascript
 const value = null
@@ -45,9 +47,7 @@ const validations = { allowNull: false }
 const result = validate(value, validations) 
 /* {
     value: null,
-    errors: [
-        { error: 'CANT_BE_NULL', values: null }
-    ]
+    errors: [{ cantBeNull: true }]
 } */
 ```
 
@@ -55,17 +55,27 @@ const result = validate(value, validations)
 
 |               | presence: true    | allowNull: false  | 
 | ------------- | ------------------| ----------------  |
-| 'Text'        |         Ok        |         Ok        | 
-| 123           |         OK        |         Ok        |
-| 0             |         OK        |         Ok        |
-| ' '           |                   |         Ok        |
-| ''            |                   |         Ok        |
-| []            |                   |         Ok        |
-| {}            |                   |         Ok        |
+| 'Text'        |       Valid       |       Valid       | 
+| 123           |       Valid       |       Valid       |
+| 0             |       Valid       |       Valid       |
+| ' '           |                   |       Valid       |
+| ''            |                   |       Valid       |
+| []            |                   |       Valid       |
+| {}            |                   |       Valid       |
 | null          |                   |                   |  
 | undefined     |                   |                   |  
 
 #### Length
+
+Validates the length of the value. 
+
+It is possible to specify length constraints in different ways:
+
+`minimum` (number) - The value cannot have less than the specified length
+
+`maximum` (number) - The value cannot have more than the specified length
+
+`is` (number) - The value length must be equal to the given length
 
 ```javascript
 const value = 'john'
@@ -83,19 +93,37 @@ const result = validate(value, validations)
 
 #### Numericality
 
+Validates constraints to acceptable numeric values.
+
+It must be a valid `Number` JS object. Use `{ type: Number }` to validate if the value is a valid JS `Number` object.
+
+`equalTo` (number) - Specifies the value must be equal to the supplied value. 
+
+`greaterThan` (number) - Specifies the value must be greater than the supplied value. 
+
+`greaterThanOrEqualTo` (number) - Specifies the value must be greater than or equal to the supplied value.
+
+`lessThan` (number) - Specifies the value must be less than the supplied value.
+
+`lessThanOrEqualTo` (number) - Specifies the value must be less than or equal to the supplied value. 
+
+`onlyInteger` (boolean) - To specify that only integral numbers are allowed.
+
 ```javascript
 const value = 123.4
 const validations = {
-    equalTo: 123,
-    greaterThan: 200,
-    greaterThanOrEqualTo: 123,
-    lessThan: 0,
-    lessThanOrEqualTo: 123,
-    onlyInteger: true
+    numericality: {
+        equalTo: 123,
+        greaterThan: 200,
+        greaterThanOrEqualTo: 123,
+        lessThan: 0,
+        lessThanOrEqualTo: 123,
+        onlyInteger: true
+    }
 }
 const result = validate(value, validations) 
 /* {
-    value: 'john',
+    value: 123.4,
     errors: [
         { notEqualTo: 123 },
         { notGreaterThan: 200 },
@@ -106,21 +134,57 @@ const result = validate(value, validations)
 } */
 ```
 
+#### Datetime
+
+Validates constraints to acceptable date and time values.
+
+It must be a valid `Date` time JS object. Use `{ type: Date }` to validate if the value is a valid JS `Date` object.
+
+`before` (date) - A date must be before this value to be valid 
+
+`after` (date) - A date must be after this value to be valid 
+
+`isAt` (date) - A date must be equal to value to be valid 
+
+```javascript
+const value = new Date('2001-01-02')
+const validations = {
+    datetime : {
+            before: new Date('2001-01-01'),
+            after: new Date('2001-01-03'),
+            isAt: new Date('2001-02-02')
+        }
+}
+const result = validate(value, validations) 
+/* {
+    value: '2001-01-02T00:00:00.000Z',
+    errors: [
+        { tooLate: '2001-01-01T00:00:00.000Z' },
+        { tooEarly: '2001-01-03T00:00:00.000Z') },
+        { notAt: '2001-02-02T00:00:00.000Z') }
+    ]
+} */
+```
+
 #### Type
 
-Type validator ensures a value is of the correct JavaScript type:
+Type validator ensures a value is of the correct JavaScript type.
 
-`Number`: double-precision 64-bit binary format IEEE 754 value
+`type` - A valid JavaScript type.
 
-`String`: a UTF‐16 character sequence
+JavaScript types:
 
-`Boolean`: true or false
+`Number` - double-precision 64-bit binary format IEEE 754 value
 
-`Date`: represents a single moment in time in a platform-independent format. 
+`String` - a UTF‐16 character sequence
 
-`Object`: the Object class represents one of JavaScript's data types.
+`Boolean` - true or false
 
-`Array`: the Array class is a object that is used in the construction of arrays. 
+`Date` - represents a single moment in time in a platform-independent format. 
+
+`Object` - the Object class represents one of JavaScript's data types.
+
+`Array` - the Array class is a object that is used in the construction of arrays. 
 
 ```javascript
 const value = '2001'
@@ -128,16 +192,14 @@ const validations = { type: Date }
 const result = validate(value, validations)
 /* {
     value: '2001',
-    errors: [
-        { error: 'WRONG_TYPE', values: { type: 'Date' } }
-    ]
+    errors:[{ wrongType: 'Date' }]
 } */
 
 ```
 
 ### Null Values
 
-The `length` and `numericality` validators won't validate a value if it's `null`.
+The `length`, `numericality` and `datetime` validators won't validate a value if it's `null`.
 To ensure your your value is not null, use `allowNull:false`.
 
 ## TODO
@@ -148,7 +210,7 @@ Validators:
 - [X] type 
 - [X] numericality (greater than, equal to, is integer, etc)
 - [ ] format - regex
-- [ ] date - earliest, latest
+- [X] date - earliest, latest
 - [ ] common formats - url, email, etc
 - [ ] enums/lists - validate if value exists in the given list
 - [ ] reject list - validate if value does not exists in the given list 
@@ -160,6 +222,7 @@ Features:
 - [ ] Allow a custom functions for validaton
 - [ ] Allow a conditional `if` functions for validaton
 - [ ] Be able to inject a diferent `checker`
+- [ ] Better checks on validator's `params`
 
 
 ### Contribute

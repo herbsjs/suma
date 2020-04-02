@@ -4,6 +4,7 @@ const validators = {
     type: require('./validators/type'),
     length: require('./validators/length'),
     numericality: require('./validators/numericality'),
+    datetime: require('./validators/datetime'),
 }
 
 function validate(value, validations) {
