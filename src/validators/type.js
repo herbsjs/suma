@@ -10,6 +10,9 @@ typeCheckers.set(Object, checker.isObject)
 typeCheckers.set(Array, checker.isArray)
 
 function type(value, options) {
+    // ignore Null
+    if (!checker.isDefined(value)) return null
+
     const typeChecker = typeCheckers.get(options)
     if (typeChecker === undefined) throw Error(`Unknown type validator for type "${options}"`)
     const result = typeChecker(value)

@@ -1,6 +1,6 @@
 const assert = require('assert')
-const validate = require('../../src/suma')
-const err = require('../../src/errorCodes')
+const { validate, errorCodes } = require('../../src/suma')
+const err = errorCodes
 
 describe('length validation', () => {
 

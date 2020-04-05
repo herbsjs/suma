@@ -1,6 +1,6 @@
 const assert = require('assert')
-const validate = require('../../src/suma')
-const err = require('../../src/errorCodes')
+const { validate, errorCodes } = require('../../src/suma')
+const err = errorCodes
 
 describe('type validation', () => {
 
@@ -12,16 +12,22 @@ describe('type validation', () => {
             [Number, Number.MAX_SAFE_INTEGER],
             [Number, Number.NEGATIVE_INFINITY],
             [Number, Number.POSITIVE_INFINITY],
+            [Number, null],
             [String, 'text'],
             [String, ''],
+            [String, null],
             [Boolean, true],
             [Boolean, false],
+            [Boolean, null],
             [Date, new Date()],
             [Date, new Date('2001-01-01')],
+            [Date, null],
             [Object, {}],
             [Object, new Object()],
+            [Object, null],
             [Array, []],
             [Array, new Array()],
+            [Array, null],
         ]
         for (const value of samples) {
             // given
@@ -36,20 +42,14 @@ describe('type validation', () => {
     it('does not allows values with incorrect types', () => {
         const samples = [
             [Number, 'a'],
-            [Number, null],
             [String, 1],
-            [String, null],
             [Boolean, 0],
             [Boolean, 1],
-            [Boolean, null],
             [Date, '2001-01-01'],
             [Date, Date()],
             [Date, Date.now()],
-            [Date, null],
             [Object, 'Object'],
-            [Object, null],
             [Array, 'Array'],
-            [Array, null],
         ]
         for (const value of samples) {
             // given

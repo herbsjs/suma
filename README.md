@@ -201,8 +201,9 @@ const result = validate(value, validations)
 
 ### Null Values
 
-The `length`, `numericality` and `datetime` validators won't validate a value if it's `null`.
-To ensure your your value is not null, use `allowNull:false`.
+The `type`, `length`, `numericality` and `datetime` validators won't validate a value if it's `null` or `undefined`.
+
+To ensure your your value is not null, use `allowNull: false` or `presence: true`.
 
 ## TODO
 
