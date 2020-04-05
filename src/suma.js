@@ -6,6 +6,8 @@ const validators = {
     numericality: require('./validators/numericality'),
     datetime: require('./validators/datetime'),
 }
+const errorCodes = require('./errorCodes')
+const checker = require('./checker')
 
 function validate(value, validations) {
     let result = []
@@ -19,4 +21,4 @@ function validate(value, validations) {
     return { value: value, errors: result }
 }
 
-module.exports = validate
+module.exports = { validate, errorCodes, checker }
