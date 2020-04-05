@@ -32,6 +32,10 @@ class Checker {
         return obj === Object(obj)
     }
 
+    static isInstanceOf(obj, type) {
+        return obj instanceof type
+    }
+
     static isEmpty(value) {
         if (!this.isDefined(value)) return true
 

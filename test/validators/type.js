@@ -4,6 +4,9 @@ const err = errorCodes
 
 describe('type validation', () => {
 
+    class CustomType { }
+    class CustomChildType extends CustomType { }
+
     it('does allows values with correct types', () => {
         const samples = [
             [Number, 0],
@@ -28,6 +31,10 @@ describe('type validation', () => {
             [Array, []],
             [Array, new Array()],
             [Array, null],
+            [CustomType, new CustomType()],
+            [CustomChildType, new CustomChildType()],
+            [CustomType, new CustomChildType()],
+
         ]
         for (const value of samples) {
             // given
@@ -50,6 +57,11 @@ describe('type validation', () => {
             [Date, Date.now()],
             [Object, 'Object'],
             [Array, 'Array'],
+            [CustomType, 1],
+            [CustomType, '1'],
+            [CustomType, new Date()],
+            [CustomType, []],
+            [CustomChildType, CustomType],
         ]
         for (const value of samples) {
             // given

@@ -13,9 +13,9 @@ function type(value, options) {
     // ignore Null
     if (!checker.isDefined(value)) return null
 
-    const typeChecker = typeCheckers.get(options)
-    if (typeChecker === undefined) throw Error(`Unknown type validator for type "${options}"`)
-    const result = typeChecker(value)
+    let typeChecker = typeCheckers.get(options)
+    if (typeChecker === undefined) typeChecker = checker.isInstanceOf
+    const result = typeChecker(value, options)
     return result ? null : { [err.wrongType]: options.name }
 }
 

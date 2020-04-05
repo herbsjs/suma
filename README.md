@@ -170,7 +170,7 @@ const result = validate(value, validations)
 
 #### Type
 
-Type validator ensures a value is of the correct JavaScript type.
+Type validator ensures a value is of the correct JavaScript type or a custom type.
 
 `type` - A valid JavaScript type.
 
@@ -195,6 +195,22 @@ const result = validate(value, validations)
 /* {
     value: '2001',
     errors:[{ wrongType: 'Date' }]
+} */
+
+```
+
+Custom types:
+
+```javascript
+
+class User { ... }
+
+const value = 'Admin'
+const validations = { type: User }
+const result = validate(value, validations)
+/* {
+    value: 'Admin',
+    errors:[{ wrongType: 'User' }]
 } */
 
 ```
