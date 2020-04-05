@@ -4,11 +4,6 @@ const err = require('../../src/errorCodes')
 
 describe('type validation', () => {
 
-    function validateTypeTest(type, value) {
-        const validations = { type: type }
-        return validate(value, validations)
-    }
-
     it('does allows values with correct types', () => {
         const samples = [
             [Number, 0],
@@ -29,7 +24,11 @@ describe('type validation', () => {
             [Array, new Array()],
         ]
         for (const value of samples) {
-            const ret = validateTypeTest(value[0], value[1])
+            // given
+            const validations = { type: value[0] }
+            // when
+            const ret = validate(value[1], validations)
+            // then
             assert.deepStrictEqual(ret, { value: value[1], errors: [] })
         }
     })
@@ -53,7 +52,11 @@ describe('type validation', () => {
             [Array, null],
         ]
         for (const value of samples) {
-            const ret = validateTypeTest(value[0], value[1])
+            // given
+            const validations = { type: value[0] }
+            // when
+            const ret = validate(value[1], validations)
+            // then
             assert.deepStrictEqual(ret, { value: value[1], errors: [{ [err.wrongType]: value[0].name }] })
         }
     })

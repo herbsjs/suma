@@ -218,7 +218,7 @@ Validators:
 Features:
 - [X] Error message only
 - [X] No dependency 
-- [ ] Doc every validators property
+- [X] Doc every validators property
 - [ ] Allow a custom functions for validaton
 - [ ] Allow a conditional `if` functions for validaton
 - [ ] Be able to inject a diferent `checker`

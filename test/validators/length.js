@@ -14,17 +14,27 @@ describe('length validation', () => {
             [null, { is: 4 }]
         ]
         for (const value of samples) {
+            // given
             const validations = { length: value[1] }
+            // when
             const ret = validate(value[0], validations)
+            // then
             assert.deepStrictEqual(ret, { value: value[0], errors: [] })
         }
     })
 
     it('does allows values with the right length with multiple params', () => {
+        // given
         const value = 'text'
-        const length = { minimum: 0, maximum: 100, is: 4 }
+        const length = {
+            minimum: 0,
+            maximum: 100,
+            is: 4
+        }
         const validations = { length: length }
+        // when
         const ret = validate(value, validations)
+        // then
         assert.deepStrictEqual(ret, { value: value, errors: [] })
     })
 
@@ -35,8 +45,11 @@ describe('length validation', () => {
             ['text', { is: 3 }, err.wrongLength],
         ]
         for (const value of samples) {
+            // given
             const validations = { length: value[1] }
+            // when
             const ret = validate(value[0], validations)
+            // then
             assert.deepStrictEqual(ret, {
                 value: value[0],
                 errors: [{ [value[2]]: value[1][Object.keys(value[1])[0]] }]
@@ -45,10 +58,13 @@ describe('length validation', () => {
     })
 
     it('does not allows values with the wrong length with multiple params', () => {
+        // given
         const value = 'text'
         const length = { minimum: 5, maximum: 3, is: 3 }
         const validations = { length: length }
+        // when
         const ret = validate(value, validations)
+        // then
         assert.deepStrictEqual(ret, {
             value: value,
             errors: [

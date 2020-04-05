@@ -23,13 +23,17 @@ describe('numericality validation', () => {
             [null, { onlyInteger: false }],
         ]
         for (const value of samples) {
+            // given
             const validations = { numericality: value[1] }
+            // when
             const ret = validate(value[0], validations)
+            // then
             assert.deepStrictEqual(ret, { value: value[0], errors: [] })
         }
     })
 
     it('does allows valid numeric values with multiple params', () => {
+        // given
         const value = 123
         const numericality = {
             equalTo: 123,
@@ -40,7 +44,9 @@ describe('numericality validation', () => {
             onlyInteger: true
         }
         const validations = { numericality }
+        // when
         const ret = validate(value, validations)
+        // then
         assert.deepStrictEqual(ret, { value: value, errors: [] })
     })
 
@@ -61,8 +67,11 @@ describe('numericality validation', () => {
             ['a', { onlyInteger: true }, err.notANumber],
         ]
         for (const value of samples) {
+            // given
             const validations = { numericality: value[1] }
+            // when
             const ret = validate(value[0], validations)
+            // then
             assert.deepStrictEqual(ret, {
                 value: value[0],
                 errors: [{ [value[2]]: value[1][Object.keys(value[1])[0]] }]
@@ -71,6 +80,7 @@ describe('numericality validation', () => {
     })
 
     it('does not allows invalid numeric values with multiple params', () => {
+        // given
         const value = 123.4
         const numericality = {
             equalTo: 123,
@@ -81,7 +91,9 @@ describe('numericality validation', () => {
             onlyInteger: true
         }
         const validations = { numericality }
+        // when
         const ret = validate(value, validations)
+        // then
         assert.deepStrictEqual(ret, {
             value: value,
             errors: [

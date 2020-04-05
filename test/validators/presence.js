@@ -18,8 +18,11 @@ describe('presence validation', () => {
             () => { }
         ]
         for (const value of samples) {
+            // given
             const validations = { presence: true }
+            // when
             const ret = validate(value, validations)
+            // then
             assert.deepStrictEqual(ret, { value: value, errors: [] })
         }
     })
@@ -34,8 +37,11 @@ describe('presence validation', () => {
             undefined
         ]
         for (const value of samples) {
+            // given
             const validations = { presence: true }
+            // when
             const ret = validate(value, validations)
+            // then
             assert.deepStrictEqual(ret, { value: value, errors: [{ [err.cantBeEmpty]: true }] })
         }
     })
@@ -50,8 +56,11 @@ describe('presence validation', () => {
             undefined
         ]
         for (const value of samples) {
+            // given
             const validations = { presence: false }
+            // when
             const ret = validate(value, validations)
+            // then
             assert.deepStrictEqual(ret, { value: value, errors: [] })
         }
     })

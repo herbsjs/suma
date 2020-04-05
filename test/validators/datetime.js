@@ -14,13 +14,17 @@ describe('datetime validation', () => {
             [null, { isAt: new Date('2001-01-01') }],
         ]
         for (const value of samples) {
+            // given
             const validations = { datetime: value[1] }
+            // when
             const ret = validate(value[0], validations)
+            // then
             assert.deepStrictEqual(ret, { value: value[0], errors: [] })
         }
     })
 
     it('does allows valid datetime values with multiple params', () => {
+        // given
         const value = new Date('2001-01-02') 
         const datetime = {
             before: new Date('2001-01-03'),
@@ -28,7 +32,9 @@ describe('datetime validation', () => {
             isAt: new Date('2001-01-02')
         }
         const validations = { datetime }
+        // when
         const ret = validate(value, validations)
+        // then
         assert.deepStrictEqual(ret, { value: value, errors: [] })
     })
 
@@ -45,8 +51,11 @@ describe('datetime validation', () => {
             [3000, { isAt: new Date('2001-01-01') }, err.notADate],
         ]
         for (const value of samples) {
+            // given
             const validations = { datetime: value[1] }
+            // when
             const ret = validate(value[0], validations)
+            // then
             assert.deepStrictEqual(ret, {
                 value: value[0],
                 errors: [{ [value[2]]: value[1][Object.keys(value[1])[0]] }]
@@ -55,6 +64,7 @@ describe('datetime validation', () => {
     })
 
     it('does not allows invalid datetime values with multiple params', () => {
+        // given
         const value = new Date('2001-01-02') 
         const datetime = {
             before: new Date('2001-01-01'),
@@ -62,7 +72,9 @@ describe('datetime validation', () => {
             isAt: new Date('2001-02-02')
         }
         const validations = { datetime }
+        // when
         const ret = validate(value, validations)
+        // then
         assert.deepStrictEqual(ret, {
             value: value,
             errors: [

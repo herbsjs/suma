@@ -22,8 +22,11 @@ describe('allow null validation', () => {
             ' ',
         ]
         for (const value of samples) {
+            // given
             const validations = { allowNull: false }
+            // when
             const ret = validate(value, validations)
+            // then
             assert.deepStrictEqual(ret, { value: value, errors: [] })
         }
     })
@@ -34,8 +37,11 @@ describe('allow null validation', () => {
             undefined
         ]
         for (const value of samples) {
+            // given
             const validations = { allowNull: true }
+            // when
             const ret = validate(value, validations)
+            // then
             assert.deepStrictEqual(ret, { value: value, errors: [{ [err.cantBeNull]: true }] })
         }
     })
@@ -46,8 +52,11 @@ describe('allow null validation', () => {
             undefined
         ]
         for (const value of samples) {
+            // given
             const validations = { allowNull: false }
+            // when
             const ret = validate(value, validations)
+            // then
             assert.deepStrictEqual(ret, { value: value, errors: [] })
         }
     })
