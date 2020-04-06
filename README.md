@@ -86,9 +86,9 @@ const result = validate(value, validations)
 /* {
     value: 'john',
     errors: [
-        { error: 'IS_TOO_SHORT', values: { length: 5 } },
-        { error: 'IS_TOO_LONG', values: { length: 3 } },
-        { error: 'WRONG_LENGTH', values: { length: 1 } }
+        { isTooShort: 5 },
+        { isTooLong: 3 },
+        { wrongLength: 1 }
     ]
 } */
 ```
