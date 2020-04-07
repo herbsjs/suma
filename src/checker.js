@@ -11,6 +11,14 @@ class Checker {
     static isArray(value) {
         return {}.toString.call(value) === '[object Array]'
     }
+    
+    static isArrayWithType(value) {
+        return Array.isArray(value) && value.length === 1 && typeof value[0] === 'function'
+    }
+
+    static isArrayWithTypeValid(value, typeChecker, type) {
+        return value.every((i) => typeChecker(i, type))
+    }
 
     static isString(value) {
         return typeof value === 'string' || value instanceof String

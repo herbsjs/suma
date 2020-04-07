@@ -14,6 +14,8 @@ Suma does not validate schema or objects, just single values. For schema validat
 ### Using
 
 ```javascript
+const { validate } = require('suma')
+
 const value = null
 const validations = { presence: true }
 const result = validate(value, validations) 
@@ -172,9 +174,9 @@ const result = validate(value, validations)
 
 Type validator ensures a value is of the correct JavaScript type or a custom type.
 
-`type` - A valid JavaScript type.
+`type` - A valid native JavaScript type, a custom type or a array with type
 
-JavaScript types:
+Native JavaScript types:
 
 `Number` - double-precision 64-bit binary format IEEE 754 value
 
@@ -213,6 +215,20 @@ const result = validate(value, validations)
     errors:[{ wrongType: 'User' }]
 } */
 
+```
+
+Lists - Array with types:
+
+It is possible to validate the type of elements of an array. Just use `[type]`.
+
+```javascript
+const value = ['2']
+const validations = { type: [Number] }
+const result = validate(value, validations)
+/* {
+    value: ['2'],
+    errors:[{ wrongType: ['Number'] }]
+} */
 ```
 
 ### Null Values
