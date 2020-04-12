@@ -1,5 +1,6 @@
 const validators = {
     presence: require('./validators/presence'),
+    format: require('./validators/format'),
     allowNull: require('./validators/allowNull'),
     type: require('./validators/type'),
     length: require('./validators/length'),

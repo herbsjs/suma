@@ -244,7 +244,7 @@ Validators:
 - [X] length 
 - [X] type 
 - [X] numericality (greater than, equal to, is integer, etc)
-- [ ] format - regex
+- [X] format - regex
 - [X] date - earliest, latest
 - [ ] common formats - url, email, etc
 - [ ] enums/lists - validate if value exists in the given list
