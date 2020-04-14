@@ -50,7 +50,7 @@ describe("format validation", () => {
       it("allows RegExp flag pattern", function() {
 
         //zipcode regex
-        var pattern = new RegExp('^[0-9]{8}$')
+        var pattern = new RegExp('^[0-9]{8}$','i')
          
         const samples = [
            "05541030",37130000

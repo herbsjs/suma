@@ -176,11 +176,11 @@ const result = validate(value, validations)
 
 ```javascript
 const pattern = /^[0-9]{8}$/ // or you can use new RegExp('^[0-9]{8}$')
-const value = ''
+const value = '05547-022'
 const validations = { format: pattern }
 const result = validate(value, validations) 
 /* {
-    value: '',
+    value: '05547-022',
     errors: [{ invalidFormat: true }]
 } */
 ```
@@ -248,7 +248,7 @@ const result = validate(value, validations)
 
 ### Null Values
 
-The `type`, `length`, `numericality` and `datetime` validators won't validate a value if it's `null` or `undefined`.
+The `type`, `length`, `numericality`, `format` and `datetime` validators won't validate a value if it's `null` or `undefined`.
 
 To ensure your your value is not null, use `allowNull: false` or `presence: true`.
 
