@@ -32,7 +32,7 @@ describe("format validation", () => {
        var pattern = /^[0-9]{8}$/
         
        const samples = [
-          "05541030"
+          "05541030",37130000
        ]
 
        for (const value of samples) {
@@ -47,13 +47,34 @@ describe("format validation", () => {
       })
 
 
+      it("allows RegExp flag pattern", function() {
+
+        //zipcode regex
+        var pattern = new RegExp('^[0-9]{8}$')
+         
+        const samples = [
+           "05541030",37130000
+        ]
+ 
+        for (const value of samples) {
+            // given
+            const validations = { format: pattern }
+            // when
+            const ret = validate(value, validations)
+            // then
+            assert.deepStrictEqual(ret, { value: value, errors: [] })
+        }
+ 
+       })
+
+
     it("allows work with multiple validations", function() {
 
         //zipcode regex
         var pattern = /^[0-9]{8}$/
          
         const samples = [
-           "05541030"
+            "05541030",37130000
         ]
  
         for (const value of samples) {
@@ -73,7 +94,7 @@ describe("format validation", () => {
          var pattern = /^[0-9]{8}$/
         
          const samples = [
-            "fz055410"
+            "fz055410",true,37130.000,['37130000']
          ]
         for (const value of samples) {
             // given
@@ -83,24 +104,5 @@ describe("format validation", () => {
             // then
             assert.deepStrictEqual(ret, { value: value, errors: [{ [err.invalidFormat]: true }] })
         }
-    })
-
-    it('does not allow non string values', () => {
-
-        //zipcode regex
-        var pattern = /^[0-9]{8}$/
-       
-        const samples = [
-           05541
-        ]
-       for (const value of samples) {
-           // given
-           const validations = { format: pattern  }
-           // when
-           const ret = validate(value, validations)
-           // then
-           assert.deepStrictEqual(ret, { value: value, errors: [{ [err.invalidFormat]: true }] })
-       }
-   })
-    
+    })   
 })

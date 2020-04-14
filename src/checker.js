@@ -69,6 +69,10 @@ class Checker {
         return false
     }
 
+    static isValidFormat(value,expression) {
+        return expression.test(value)
+    }
+    
     static isTooShort(value, minimum) {
         if (!this.isNumber(minimum)) throw Error(`Invalid minimum length. It must be a number.`)
         const length = value.length

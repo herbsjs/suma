@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/herbsjs/suma/master/docs/logo.png" height="220"></p>
+ <p align="center"><img src="https://raw.githubusercontent.com/herbsjs/suma/master/docs/logo.png" height="220"></p> 
 
 # Suma
 
@@ -167,6 +167,21 @@ const result = validate(value, validations)
         { tooEarly: '2001-01-03T00:00:00.000Z') },
         { notAt: '2001-02-02T00:00:00.000Z') }
     ]
+} */
+```
+
+#### Format
+
+`format` (regex) -The format validator will validate a value against a regular expression of your chosing.
+
+```javascript
+const pattern = /^[0-9]{8}$/ // or you can use new RegExp('^[0-9]{8}$')
+const value = ''
+const validations = { format: pattern }
+const result = validate(value, validations) 
+/* {
+    value: '',
+    errors: [{ invalidFormat: true }]
 } */
 ```
 
