@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/herbsjs/suma/master/docs/logo.png" height="220"></p>
+ <p align="center"><img src="https://raw.githubusercontent.com/herbsjs/suma/master/docs/logo.png" height="220"></p> 
 
 # Suma
 
@@ -170,6 +170,21 @@ const result = validate(value, validations)
 } */
 ```
 
+#### Format
+
+`format` (regex) -The format validator will validate a value against a regular expression of your chosing.
+
+```javascript
+const pattern = /^[0-9]{8}$/ // or you can use new RegExp('^[0-9]{8}$')
+const value = '05547-022'
+const validations = { format: pattern }
+const result = validate(value, validations) 
+/* {
+    value: '05547-022',
+    errors: [{ invalidFormat: true }]
+} */
+```
+
 #### Type
 
 Type validator ensures a value is of the correct JavaScript type or a custom type.
@@ -233,7 +248,7 @@ const result = validate(value, validations)
 
 ### Null Values
 
-The `type`, `length`, `numericality` and `datetime` validators won't validate a value if it's `null` or `undefined`.
+The `type`, `length`, `numericality`, `format` and `datetime` validators won't validate a value if it's `null` or `undefined`.
 
 To ensure your your value is not null, use `allowNull: false` or `presence: true`.
 
@@ -244,7 +259,7 @@ Validators:
 - [X] length 
 - [X] type 
 - [X] numericality (greater than, equal to, is integer, etc)
-- [ ] format - regex
+- [X] format - regex
 - [X] date - earliest, latest
 - [ ] common formats - url, email, etc
 - [ ] enums/lists - validate if value exists in the given list
