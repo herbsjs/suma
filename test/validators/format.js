@@ -32,7 +32,7 @@ describe("format validation", () => {
        var pattern = /^[0-9]{8}$/
         
        const samples = [
-          "05541030",37130000
+          "05541030",37130000,['37130000']
        ]
 
        for (const value of samples) {
@@ -67,34 +67,14 @@ describe("format validation", () => {
  
        })
 
-
-    it("allows work with multiple validations", function() {
-
-        //zipcode regex
-        var pattern = /^[0-9]{8}$/
-         
-        const samples = [
-            "05541030",37130000
-        ]
- 
-        for (const value of samples) {
-            // given
-            const validations = { format: pattern, presence: true }
-            // when
-            const ret = validate(value, validations)
-            // then
-            assert.deepStrictEqual(ret, { value: value, errors: [] })
-        }
- 
-       })
-      
+    
     it('does not allow values that not matches the pattern', () => {
 
          //zipcode regex
          var pattern = /^[0-9]{8}$/
         
          const samples = [
-            "fz055410",true,37130.000,['37130000']
+            "fz055410",true,37130.000,new Date()
          ]
         for (const value of samples) {
             // given
