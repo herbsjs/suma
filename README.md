@@ -1,5 +1,7 @@
  <p align="center"><img src="https://raw.githubusercontent.com/herbsjs/suma/master/docs/logo.png" height="220"></p> 
 
+![Node.js CI](https://github.com/herbsjs/suma/workflows/Node.js%20CI/badge.svg?branch=master)
+
 # Suma
 
 Suma helps with single value validations.
