@@ -62,7 +62,7 @@ describe("format validation", () => {
             // when
             const ret = validate(value[1], validations)
             // then
-            assert.deepStrictEqual(ret, { value: value[1], errors: [{ [err.invalidFormat]: false }] })
+            assert.deepStrictEqual(ret, { value: value[1], errors: [{ [err.invalidFormat]: true }] })
         }
 
     })
