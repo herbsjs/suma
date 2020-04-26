@@ -191,11 +191,12 @@ describe("url validation", () => {
 
     it('does allows custom schemes if option is set ', () => {
 
-        var options = {schemes: ['ftp', 'jdbc']}
+        var options = {schemes: ['ftp','jdbc', '.+']}
 
         const samples = [
             "ftp://foo.bar.com",
-            "jdbc://foo.bar.com"
+            "jdbc://foo.bar.com",
+            "sftp://foo.bar.com"
         ]
         for (const value of samples) {
             // given

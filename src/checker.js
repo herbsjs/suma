@@ -75,9 +75,12 @@ class Checker {
 
     static isValidURL(value, options) {
 
-        var schemes = options.schemes || this.schemes || ['http', 'https']
-        var allowDataUrl = options.allowDataUrl || this.allowDataUrl || false
-        var allowLocal = options.allowLocal || this.allowLocal || false
+
+        if (!this.isString(value)) return false
+
+        var schemes = options.schemes  || ['http', 'https']
+        var allowDataUrl = options.allowDataUrl  || false
+        var allowLocal = options.allowLocal || false
 
         // based on https://gist.github.com/dperini/729294
         var regex =
