@@ -255,11 +255,11 @@ const result = validate(value, validations)
 
  The following options are supported: 
 
-`schemes` - (array of string) A list of schemes to allow. If you want to support any scheme you can use a regexp here (for example `[".+"]`). The default value is `["http", "https"]`. 
+`schemes` - (array of string) A list of schemes to allow. If you want to support any scheme you can use a regexp here (for example **[".+"]**). The default value is **["http", "https"]**. 
 
-`allowLocal ` (boolean) - A boolean that if true allows local hostnames such as `10.0.1.1` or localhost. The default is `false`. 
+`allowLocal` (boolean) - A boolean that if true allows local hostnames such as **10.0.1.1** or localhost. The default is **false**. 
 
-`allowDataUrl ` (boolean) - A boolean that if true allows data URLs as defined in [`RFC 2397`](https://tools.ietf.org/html/rfc2397). The default is `false`
+`allowDataUrl` (boolean) - A boolean that if true allows data URLs as defined in [`RFC 2397`](https://tools.ietf.org/html/rfc2397). The default is **false**
 
 ```javascript
 const value = "google.com"
