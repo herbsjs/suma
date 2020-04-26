@@ -11,7 +11,7 @@ class Checker {
     static isArray(value) {
         return {}.toString.call(value) === '[object Array]'
     }
-    
+
     static isArrayWithType(value) {
         return Array.isArray(value) && value.length === 1 && typeof value[0] === 'function'
     }
@@ -69,69 +69,133 @@ class Checker {
         return false
     }
 
-    static isValidFormat(value,expression) {
+    static isValidFormat(value, expression) {
         return expression.test(value)
     }
-    
+
+    static isValidURL(value, options) {
+
+
+        if (!this.isString(value)) return false
+
+        var schemes = options.schemes  || ['http', 'https']
+        var allowDataUrl = options.allowDataUrl  || false
+        var allowLocal = options.allowLocal || false
+
+        // based on https://gist.github.com/dperini/729294
+        var regex =
+            "^" +
+            // protocol identifier
+            "(?:(?:" + schemes.join("|") + ")://)" +
+            // user:pass authentication
+            "(?:\\S+(?::\\S*)?@)?" +
+            "(?:";
+
+        var tld = "(?:\\.(?:[a-z\\u00a1-\\uffff]{2,}))";
+
+        if (allowLocal) {
+            tld += "?";
+        } else {
+            regex +=
+                // IP address exclusion
+                // private & local networks
+                "(?!(?:10|127)(?:\\.\\d{1,3}){3})" +
+                "(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})" +
+                "(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})";
+        }
+
+        regex +=
+            // IP address dotted notation octets
+            // excludes loopback network 0.0.0.0
+            // excludes reserved space >= 224.0.0.0
+            // excludes network & broacast addresses
+            // (first & last IP address of each class)
+            "(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])" +
+            "(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}" +
+            "(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))" +
+            "|" +
+            // host name
+            "(?:(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)" +
+            // domain name
+            "(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*" +
+            tld +
+            ")" +
+            // port number
+            "(?::\\d{2,5})?" +
+            // resource path
+            "(?:[/?#]\\S*)?" +
+            "$";
+
+        if (allowDataUrl) {
+            // RFC 2397
+            var mediaType = "\\w+\\/[-+.\\w]+(?:;[\\w=]+)*";
+            var urlchar = "[A-Za-z0-9-_.!~\\*'();\\/?:@&=+$,%]*";
+            var dataurl = "data:(?:" + mediaType + ")?(?:;base64)?," + urlchar;
+            regex = "(?:" + regex + ")|(?:^" + dataurl + "$)";
+        }
+
+        return this.isValidFormat(value,new RegExp(regex, 'i'))
+    }
+
     static isTooShort(value, minimum) {
         if (!this.isNumber(minimum)) throw Error(`Invalid minimum length. It must be a number.`)
         const length = value.length
-        return length < minimum 
+        return length < minimum
     }
 
     static isTooLong(value, maximum) {
         if (!this.isNumber(maximum)) throw Error(`Invalid maximum length. It must be a number.`)
         const length = value.length
-        return length > maximum 
+        return length > maximum
     }
     static isWrongLength(value, expectedLength) {
         if (!this.isNumber(expectedLength)) throw Error(`Invalid length. It must be a number.`)
         const length = value.length
-        return length !== expectedLength 
+        return length !== expectedLength
     }
 
     static isEqualTo(left, right) {
         if (!this.isNumber(right)) throw Error(`Invalid 'Equal To'. It must be a number.`)
-        return left === right 
+        return left === right
     }
 
     static isGreaterThan(left, right) {
         if (!this.isNumber(right)) throw Error(`Invalid 'Greater Than'. It must be a number.`)
-        return left > right 
+        return left > right
     }
 
     static isGreaterThanOrEqualTo(left, right) {
         if (!this.isNumber(right)) throw Error(`Invalid 'Greater Than Or Equal To'. It must be a number.`)
-        return left >= right 
+        return left >= right
     }
 
     static isLessThan(left, right) {
         if (!this.isNumber(right)) throw Error(`Invalid 'Less Than'. It must be a number.`)
-        return left < right 
+        return left < right
     }
 
     static isLessThanOrEqualTo(left, right) {
         if (!this.isNumber(right)) throw Error(`Invalid 'Less Than Or Equal To'. It must be a number.`)
-        return left <= right 
+        return left <= right
     }
-    
+
     static isInteger(value) {
         return this.isNumber(value) && value % 1 === 0;
     }
 
     static isBeforeThan(value, param) {
         if (!this.isDate(value)) throw Error(`Invalid value. It must be a date.`)
-        return value < param 
+        return value < param
     }
 
     static isAfterThan(value, param) {
         if (!this.isDate(value)) throw Error(`Invalid value. It must be a date.`)
-        return value > param 
+        return value > param
     }
 
     static isAt(value, param) {
         if (!this.isDate(value)) throw Error(`Invalid value. It must be a date.`)
-        return value.valueOf() === param.valueOf() 
+        return value.valueOf() === param.valueOf()
     }
 }
 

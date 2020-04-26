@@ -16,7 +16,8 @@ const codes = {
     tooLate: 'tooLate',
     notAt: 'notAt',
     notADate: 'notADate',
-    invalidFormat: 'invalidFormat'
+    invalidFormat: 'invalidFormat',
+    invalidURL: 'invalidURL'
 }
 
 module.exports = codes

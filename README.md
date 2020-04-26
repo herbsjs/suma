@@ -248,6 +248,46 @@ const result = validate(value, validations)
 } */
 ```
 
+
+#### URL
+
+ The URL validator ensures that the input is a valid URL. Validating URLs are pretty tricky but this validator is inspired on a gist that can be found [`here`](https://gist.github.com/dperini/729294). 
+
+ The following options are supported: 
+
+`schemes` - (array of string) A list of schemes to allow. If you want to support any scheme you can use a regexp here (for example **[".+"]**). The default value is **["http", "https"]**. 
+
+`allowLocal` (boolean) - A boolean that if true allows local hostnames such as **10.0.1.1** or localhost. The default is **false**. 
+
+`allowDataUrl` (boolean) - A boolean that if true allows data URLs as defined in [`RFC 2397`](https://tools.ietf.org/html/rfc2397). The default is **false**
+
+```javascript
+const value = "google.com"
+const validations = { url: true }
+const result = validate(value, validations) 
+/* {
+    value: 'google.com',
+    errors: [{ invalidURL: true }]
+} */
+
+const value = "http://localhost"
+const validations = { url: {allowLocal: true} }
+const result = validate(value, validations) 
+/* {
+    value: 'http://localhost',
+    errors: []
+} */
+
+var options = {schemes: ['ftp']}
+const value = "ftp://google.com"
+const validations = { url: options }
+const result = validate(value, validations) 
+/* {
+    value: 'ftp://google.com',
+    errors: []
+} */
+```
+
 ### Null Values
 
 The `type`, `length`, `numericality`, `format` and `datetime` validators won't validate a value if it's `null` or `undefined`.
@@ -263,7 +303,8 @@ Validators:
 - [X] numericality (greater than, equal to, is integer, etc)
 - [X] format - regex
 - [X] date - earliest, latest
-- [ ] common formats - url, email, etc
+- [X] url
+- [ ] common formats - email, etc
 - [ ] enums/lists - validate if value exists in the given list
 - [ ] reject list - validate if value does not exists in the given list 
 
