@@ -36,6 +36,10 @@ class Checker {
         return obj instanceof Date
     }
 
+    static isRegExp(obj) {
+        return obj instanceof RegExp
+    }
+
     static isObject(obj) {
         return obj === Object(obj)
     }
@@ -58,6 +62,8 @@ class Checker {
 
         if (this.isDate(value)) return false
 
+        if (this.isRegExp(value)) return false
+
         if (this.isObject(value)) {
             // If it finds at least one property we consider it non empty
             for (const attr in value) {
@@ -70,6 +76,7 @@ class Checker {
     }
 
     static isValidFormat(value, expression) {
+        if (!this.isRegExp(expression)) return false  
         return expression.test(value)
     }
 
@@ -78,9 +85,9 @@ class Checker {
 
         if (!this.isString(value)) return false
 
-        var schemes = options.schemes  || ['http', 'https']
-        var allowDataUrl = options.allowDataUrl  || false
-        var allowLocal = options.allowLocal || false
+        var schemes = (options && options.schemes)  || ['http', 'https']
+        var allowDataUrl = (options && options.allowDataUrl)  || false
+        var allowLocal = ( options && options.allowLocal) || false
 
         // based on https://gist.github.com/dperini/729294
         var regex =
