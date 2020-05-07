@@ -25,5 +25,6 @@
     "nyc": "^15.0.1"
   },
   "author": "David Lojudice Sobrinho",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }
