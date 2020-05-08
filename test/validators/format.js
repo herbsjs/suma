@@ -47,7 +47,7 @@ describe("format validation", () => {
     })
 
     it('does not allow values that not matches the pattern', () => {
-       
+
         const samples = [
             [new RegExp('^[0-9]{8}$'), 'f05541030'],
             [/^[0-9]{8}$/, true],
@@ -97,8 +97,6 @@ describe("format validation", () => {
 
     })
 
-
-
     it("allows work with multiple validations", function () {
 
         //zipcode regex
@@ -113,6 +111,5 @@ describe("format validation", () => {
         assert.deepStrictEqual(ret, { value: value, errors: [] })
 
     })
-
 
 })

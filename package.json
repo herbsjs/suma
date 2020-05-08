@@ -21,7 +21,8 @@
     "error code only"
   ],
   "devDependencies": {
-    "mocha": "^7.1.1"
+    "mocha": "^7.1.1",
+    "nyc": "^15.0.1"
   },
   "author": "David Lojudice Sobrinho",
   "license": "MIT",

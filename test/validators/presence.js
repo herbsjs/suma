@@ -6,7 +6,7 @@ describe('presence validation', () => {
 
     it('does allows non empty values', () => {
         const samples = [
-            'text',
+           'text',
             0,
             1,
             false,
@@ -14,8 +14,10 @@ describe('presence validation', () => {
             [null],
             [undefined],
             [1],
+            Date(),
             { obj: null },
-            () => { }
+            () => { },
+            new RegExp('^[0-9]{8}$')
         ]
         for (const value of samples) {
             // given
