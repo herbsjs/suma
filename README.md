@@ -249,6 +249,15 @@ const result = validate(value, validations)
 
 ```javascript
 
+const pattern = /^[0-9]{8}$/ // or you can use new RegExp('^[0-9]{8}$')
+const value = '05547-022'
+const validations = { format: pattern }
+const result = validate(value, validations) 
+/* {
+    value: '05547-022',
+    errors: [{ invalidFormat: true }]
+} */
+
 const pattern = new RegExp('^[0-9]{8}$', 'i') // or you can use ^[0-9]{8}$/i
 const value = '05541030'
 const validations = { format: pattern }
@@ -258,14 +267,7 @@ const result = validate(value, validations)
     errors: []
 } */
 
-const pattern = /^[0-9]{8}$/ // or you can use new RegExp('^[0-9]{8}$')
-const value = '05547-022'
-const validations = { format: pattern }
-const result = validate(value, validations) 
-/* {
-    value: '05547-022',
-    errors: [{ invalidFormat: true }]
-} */
+
 ```
 
 
