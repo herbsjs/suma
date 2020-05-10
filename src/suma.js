@@ -7,6 +7,8 @@ const validators = {
     numericality: require('./validators/numericality'),
     datetime: require('./validators/datetime'),
     url: require('./validators/url'),
+    inclusion: require('./validators/inclusion'),
+    exclusion: require('./validators/exclusion'),
 }
 const errorCodes = require('./errorCodes')
 const checker = require('./checker')

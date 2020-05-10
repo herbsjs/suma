@@ -76,7 +76,7 @@ class Checker {
     }
 
     static isValidFormat(value, expression) {
-        if (!this.isRegExp(expression)) return false  
+        if (!this.isRegExp(expression)) return false
         return expression.test(value)
     }
 
@@ -85,9 +85,9 @@ class Checker {
 
         if (!this.isString(value)) return false
 
-        var schemes = (options && options.schemes)  || ['http', 'https']
-        var allowDataUrl = (options && options.allowDataUrl)  || false
-        var allowLocal = ( options && options.allowLocal) || false
+        var schemes = (options && options.schemes) || ['http', 'https']
+        var allowDataUrl = (options && options.allowDataUrl) || false
+        var allowLocal = (options && options.allowLocal) || false
 
         // based on https://gist.github.com/dperini/729294
         var regex =
@@ -141,7 +141,7 @@ class Checker {
             regex = "(?:" + regex + ")|(?:^" + dataurl + "$)";
         }
 
-        return this.isValidFormat(value,new RegExp(regex, 'i'))
+        return this.isValidFormat(value, new RegExp(regex, 'i'))
     }
 
     static isTooShort(value, minimum) {
@@ -203,6 +203,22 @@ class Checker {
     static isAt(value, param) {
         if (!this.isDate(value)) throw Error(`Invalid value. It must be a date.`)
         return value.valueOf() === param.valueOf()
+    }
+
+    static contains(object, value) {
+        if (!this.isDefined(object)) {
+            return false
+        }
+        if (this.isArray(object)) {
+            return object.indexOf(value) !== -1
+        }
+        if (this.isString(object)) {
+            return object.includes(value)
+        }
+        if (this.isObject(object)) {
+            return value in object
+        }
+        return false
     }
 }
 

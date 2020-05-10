@@ -172,11 +172,92 @@ const result = validate(value, validations)
 } */
 ```
 
+
+#### Exclusion
+
+`exclusion` -  The exclusion validator is useful for restriction certain value.
+It checks that the given value is not in the list given by the **within** option.
+
+You can specify **within** as a list, string or as an object (in which case the keys of the object are used).
+
+```javascript
+var list = ["small", "medium", "large"];
+const value = 'xlarge'
+const validations = { inclusion: list }
+const result = validate(value, validations) 
+/* {
+    value: 'xlarge',
+    errors: []
+} */
+
+var list = ["small", "medium", "large"];
+const value = 'small'
+const validations = { inclusion: list }
+const result = validate(value, validations) 
+/* {
+    value: 'small',
+    errors: [{ contains: ["small", "medium", "large"] }]
+} */
+
+var text = "lorem ipsum dolor";
+const value = 'hello'
+var options = { within: text };
+const validations = { inclusion: options }
+const result = validate(value, validations) 
+/* {
+    value: 'hello',
+    errors: []
+} */
+
+var text = "hello world";
+const value = 'hello'
+var options = { within: text };
+const validations = { inclusion: options }
+const result = validate(value, validations) 
+/* {
+    value: 'hello',
+    errors: [{ contains: "hello world" }]
+} */
+
+
+var object = { foo: true };
+const value = 'bar'
+var options = { within: object };
+const validations = { inclusion: options }
+const result = validate(value, validations) 
+/* {
+    value: 'bar',
+    errors: []
+} */
+
+var object = { foo: true };
+const value = 'foo'
+var options = { within: object };
+const validations = { inclusion: options }
+const result = validate(value, validations) 
+/* {
+    value: 'foo',
+     errors: [{ contains: { foo: true } }]
+} */
+
+```
+
+
 #### Format
 
 `format` (regex) -The format validator will validate a value against a regular expression of your chosing.
 
 ```javascript
+
+const pattern = new RegExp('^[0-9]{8}$', 'i') // or you can use ^[0-9]{8}$/i
+const value = '05541030'
+const validations = { format: pattern }
+const result = validate(value, validations) 
+/* {
+    value: '05541030',
+    errors: []
+} */
+
 const pattern = /^[0-9]{8}$/ // or you can use new RegExp('^[0-9]{8}$')
 const value = '05547-022'
 const validations = { format: pattern }
@@ -186,6 +267,77 @@ const result = validate(value, validations)
     errors: [{ invalidFormat: true }]
 } */
 ```
+
+
+#### Inclusion
+
+`inclusion` -  The inclusion validator is useful for validating allowance in certain values.
+It checks that the given value exists in the list given by the **within** option.
+
+You can specify **within** as a list, string or as an object (in which case the keys of the object are used).
+
+```javascript
+var list = ["small", "medium", "large"];
+const value = 'small'
+const validations = { inclusion: list }
+const result = validate(value, validations) 
+/* {
+    value: 'small',
+    errors: []
+} */
+
+var list = ["small", "medium", "large"];
+const value = 'xlarge'
+const validations = { inclusion: list }
+const result = validate(value, validations) 
+/* {
+    value: 'xlarge',
+    errors: [{ notContains: ["small", "medium", "large"] }]
+} */
+
+var text = "hello world";
+const value = 'hello'
+var options = { within: text };
+const validations = { inclusion: options }
+const result = validate(value, validations) 
+/* {
+    value: 'hello',
+    errors: []
+} */
+
+var text = "lorem ipsum dolor";
+const value = 'hello'
+var options = { within: text };
+const validations = { inclusion: options }
+const result = validate(value, validations) 
+/* {
+    value: 'hello',
+    errors: [{ notContains: "lorem ipsum dolor" }]
+} */
+
+
+var object = { foo: true };
+const value = 'foo'
+var options = { within: object };
+const validations = { inclusion: options }
+const result = validate(value, validations) 
+/* {
+    value: 'foo',
+    errors: []
+} */
+
+var object = { foo: true };
+const value = 'bar'
+var options = { within: object };
+const validations = { inclusion: options }
+const result = validate(value, validations) 
+/* {
+    value: 'bar',
+     errors: [{ notContains: { foo: true } }]
+} */
+
+```
+
 
 #### Type
 
@@ -305,8 +457,8 @@ Validators:
 - [X] date - earliest, latest
 - [X] url
 - [ ] common formats - email, etc
-- [ ] enums/lists - validate if value exists in the given list
-- [ ] reject list - validate if value does not exists in the given list 
+- [X] enums/lists - validate if value exists in the given list
+- [X] reject list - validate if value does not exists in the given list 
 
 Features:
 - [X] Error message only
