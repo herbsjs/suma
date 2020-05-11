@@ -1,6 +1,6 @@
  <p align="center"><img src="https://raw.githubusercontent.com/herbsjs/suma/master/docs/logo.png" height="220"></p> 
 
-![Node.js CI](https://github.com/herbsjs/suma/workflows/Node.js%20CI/badge.svg?branch=master)
+![Node.js CI](https://github.com/herbsjs/suma/workflows/Node.js%20CI/badge.svg?branch=master) [![codecov](https://codecov.io/gh/herbsjs/suma/branch/master/graph/badge.svg)](https://codecov.io/gh/herbsjs/suma)
 
 # Suma
 
