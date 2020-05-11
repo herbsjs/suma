@@ -101,6 +101,32 @@ describe("exclusion validation", () => {
     }
   })
 
+  it("allow if the value is not included with option as array", () => {
+
+    var sizes = ["small", "medium", "large"]
+    var value = "xlarge"
+    // given
+    const validations = { exclusion: sizes }
+    // when
+    const ret = validate(value, validations)
+    // then
+    assert.deepStrictEqual(ret, { value: value, errors: [] })  
+  })
+
+  it("does not allow if the value is included with option as array", () => {
+
+    var sizes = ["small", "medium", "large"]
+    var value = "large"
+    // given
+    const validations = { exclusion: sizes }
+    // when
+    const ret = validate(value, validations)
+    // then
+    assert.deepStrictEqual(ret, {    
+      value: value,
+      errors: [{ [err.invalidExclusion]: sizes }] })  
+  })
+
   it("allow value if is not included in an object", () => {
     const samples = [
       ["foo", { bar: true }],

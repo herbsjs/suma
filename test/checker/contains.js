@@ -22,6 +22,8 @@ describe('contains checker', () => {
             [["small", "medium", "large"],"xlarge"],
             ["hello world","goodbye"],
             ["hello world", undefined],
+            [undefined, "hello world"],
+            [null,null],
             [[25,5,4],14],
             [{foo:true},"bar"],
             [256,6]

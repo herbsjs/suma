@@ -101,6 +101,32 @@ describe("inclusion validation", () => {
     }
   })
 
+  it("allow if the value is included with option as array", () => {
+
+    var sizes = ["small", "medium", "large"]
+    var value = "large"
+    // given
+    const validations = { inclusion: sizes }
+    // when
+    const ret = validate(value, validations)
+    // then
+    assert.deepStrictEqual(ret, { value: value, errors: [] })  
+  })
+
+  it("does not allow if the value is not included with option as array", () => {
+
+    var sizes = ["small", "medium", "large"]
+    var value = "xlarge"
+    // given
+    const validations = { inclusion: sizes }
+    // when
+    const ret = validate(value, validations)
+    // then
+    assert.deepStrictEqual(ret, {    
+      value: value,
+      errors: [{ [err.invalidInclusion]: sizes }] })  
+  })
+  
   it("allow value is included in an object", () => {
     const samples = [
       ["foo", { foo: true }],
