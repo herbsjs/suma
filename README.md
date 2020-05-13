@@ -183,7 +183,7 @@ You can specify **within** as a list, string or as an object (in which case the 
 ```javascript
 var list = ["small", "medium", "large"];
 const value = 'xlarge'
-const validations = { inclusion: list }
+const validations = { exclusion: list }
 const result = validate(value, validations) 
 /* {
     value: 'xlarge',
@@ -192,7 +192,7 @@ const result = validate(value, validations)
 
 var list = ["small", "medium", "large"];
 const value = 'small'
-const validations = { inclusion: list }
+const validations = { exclusion: list }
 const result = validate(value, validations) 
 /* {
     value: 'small',
@@ -202,7 +202,7 @@ const result = validate(value, validations)
 var text = "lorem ipsum dolor";
 const value = 'hello'
 var options = { within: text };
-const validations = { inclusion: options }
+const validations = { exclusion: options }
 const result = validate(value, validations) 
 /* {
     value: 'hello',
@@ -212,7 +212,7 @@ const result = validate(value, validations)
 var text = "hello world";
 const value = 'hello'
 var options = { within: text };
-const validations = { inclusion: options }
+const validations = { exclusion: options }
 const result = validate(value, validations) 
 /* {
     value: 'hello',
@@ -223,7 +223,7 @@ const result = validate(value, validations)
 var object = { foo: true };
 const value = 'bar'
 var options = { within: object };
-const validations = { inclusion: options }
+const validations = { exclusion: options }
 const result = validate(value, validations) 
 /* {
     value: 'bar',
@@ -233,7 +233,7 @@ const result = validate(value, validations)
 var object = { foo: true };
 const value = 'foo'
 var options = { within: object };
-const validations = { inclusion: options }
+const validations = { exclusion: options }
 const result = validate(value, validations) 
 /* {
     value: 'foo',
