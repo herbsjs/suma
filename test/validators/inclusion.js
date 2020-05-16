@@ -37,7 +37,9 @@ describe("inclusion validation", () => {
     }
   })
 
-  it("does not allows if the value is not included", () => {
+
+
+  it("does not allows if the value is not included in an string", () => {
     const samples = [
       ["foo", "text", err.invalidInclusion],
       ["bar", "lorem", err.invalidInclusion],
@@ -168,6 +170,75 @@ describe("inclusion validation", () => {
         value: value[0],
         errors: [{ [value[2]]: value[1] }]
       })
+    }
+  })
+
+  
+  it("allow multiple validations with substring included and format with regex valid together", () => {
+
+    //zipcode regex
+    var pattern = /^[0-9]{8}$/
+
+    const samples = [
+      ["05541030", "05541030"]
+    ]
+
+    for (const value of samples) {
+
+      var options = { within: value[1] };
+
+      // given
+      const validations = { inclusion: options, format: pattern, presence: true }
+      // when
+      const ret = validate(value[0], validations)
+      // then
+      assert.deepStrictEqual(ret, { value: value[0], errors: [] })
+    }
+  })
+
+  
+  it("does not allow multiple validations with substring not included and format with regex valid together", () => {
+
+    //zipcode regex
+    var pattern = /^[0-9]{8}$/
+
+    const samples = [
+      ["05541030", "05541031", err.invalidInclusion]
+    ]
+
+    for (const value of samples) {
+
+      var options = { within: value[1] };
+
+      // given
+      const validations = { inclusion: options, format: pattern, presence: true }
+      // when
+      const ret = validate(value[0], validations)
+      // then
+      assert.deepStrictEqual(ret, { value: value[0], errors: [{ [value[2]]: value[1] }] })
+    }
+  })
+
+
+  it("does not allow multiple validations with substring included and format with regex not valid together", () => {
+
+    //zipcode regex
+    var pattern = /^[0-9]{8}$/
+
+    const samples = [
+      ["0554", "05541030", err.invalidFormat]
+    ]
+
+    for (const value of samples) {
+
+      var options = { within: value[1] };
+
+      // given
+      const validations = { inclusion: options, format: pattern, presence: true }
+      // when
+      const ret = validate(value[0], validations)
+      // then
+      assert.deepStrictEqual(ret, { value: value[0], errors: [{ [value[2]]: true }] })
     }
   })
 });

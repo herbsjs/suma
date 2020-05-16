@@ -170,4 +170,73 @@ describe("exclusion validation", () => {
       })
     }
   })
+
+
+  it("does not allow multiple validations with substring included and format with regex valid together", () => {
+
+    //zipcode regex
+    var pattern = /^[0-9]{8}$/
+
+    const samples = [
+      ["05541030", "05541030", err.invalidExclusion]
+    ]
+
+    for (const value of samples) {
+
+      var options = { within: value[1] };
+
+      // given
+      const validations = { exclusion: options, format: pattern, presence: true }
+      // when
+      const ret = validate(value[0], validations)
+      // then
+      assert.deepStrictEqual(ret, { value: value[0], errors:  [{ [value[2]]: value[1] }] })
+    }
+  })
+
+  
+  it("allow multiple validations with substring not included and format with regex valid together", () => {
+
+    //zipcode regex
+    var pattern = /^[0-9]{8}$/
+
+    const samples = [
+      ["05541030", "05541031"]
+    ]
+
+    for (const value of samples) {
+
+      var options = { within: value[1] };
+
+      // given
+      const validations = { exclusion: options, format: pattern, presence: true }
+      // when
+      const ret = validate(value[0], validations)
+      // then
+      assert.deepStrictEqual(ret, { value: value[0], errors: [] })
+    }
+  })
+
+
+  it("does not allow multiple validations with substring not included and format with regex not valid together", () => {
+
+    //zipcode regex
+    var pattern = /^[0-9]{8}$/
+
+    const samples = [
+      ["12345", "05541030", err.invalidFormat]
+    ]
+
+    for (const value of samples) {
+
+      var options = { within: value[1] };
+
+      // given
+      const validations = { exclusion: options, format: pattern, presence: true }
+      // when
+      const ret = validate(value[0], validations)
+      // then
+      assert.deepStrictEqual(ret, { value: value[0], errors: [{ [value[2]]: true }] })
+    }
+  })
 });
