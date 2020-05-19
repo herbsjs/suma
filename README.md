@@ -1,6 +1,6 @@
- <p align="center"><img src="https://raw.githubusercontent.com/herbsjs/suma/master/docs/logo.png" height="220"></p> 
+ <p align="center"><img src="https://raw.githubusercontent.com/herbsjs/suma/master/docs/logo.png" height="220"></p>  
 
-![Node.js CI](https://github.com/herbsjs/suma/workflows/Node.js%20CI/badge.svg?branch=master) [![codecov](https://codecov.io/gh/herbsjs/suma/branch/master/graph/badge.svg)](https://codecov.io/gh/herbsjs/suma)
+![CI Build](https://github.com/herbsjs/suma/workflows/Node.js%20CI/badge.svg?branch=master) [![codecov](https://codecov.io/gh/herbsjs/suma/branch/master/graph/badge.svg)](https://codecov.io/gh/herbsjs/suma)
 
 # Suma
 
@@ -70,6 +70,189 @@ const result = validate(value, validations)
 | {}            |                   |       Valid       |
 | null          |                   |                   |  
 | undefined     |                   |                   |  
+
+
+
+#### Contains
+
+`contains` -  The contains validator is useful for validating allowance or restriction in certain values.
+It checks that the given value exists in the target given by the **allowed** or  **notAllowed** option.
+
+You can specify the validator as a list, string or as an object (in which case the keys of the object are used).
+
+**allowed option examples:**
+
+```javascript
+var list = ["small", "medium", "large"]
+const value = 'small'
+var options = { allowed: list }
+const validations = { contains: options }
+const result = validate(value, validations) 
+/* {
+    value: 'small',
+    errors: []
+} */
+
+var list = ["small", "medium", "large"]
+const value = 'xlarge'
+var options = { allowed: list }
+const validations = { contains: options }
+const result = validate(value, validations) 
+/* {
+    value: 'xlarge',
+    errors: [{ notContains: ["small", "medium", "large"] }]
+} */
+
+var text = "hello world"
+const value = 'hello'
+var options = { allowed: text }
+const validations = { contains: options }
+const result = validate(value, validations) 
+/* {
+    value: 'hello',
+    errors: []
+} */
+
+var text = "lorem ipsum dolor"
+const value = 'hello'
+var options = { allowed: text }
+const validations = { contains: options }
+const result = validate(value, validations) 
+/* {
+    value: 'hello',
+    errors: [{ notContains: "lorem ipsum dolor" }]
+} */
+
+
+var object = { foo: true }
+const value = 'foo'
+var options = { allowed: object }
+const validations = { contains: options }
+const result = validate(value, validations) 
+/* {
+    value: 'foo',
+    errors: []
+} */
+
+var object = { foo: true }
+const value = 'bar'
+var options = { allowed: object }
+const validations = { contains: options }
+const result = validate(value, validations) 
+/* {
+    value: 'bar',
+     errors: [{ notContains: { foo: true } }]
+} */
+
+```
+
+**notAllowed option examples:**
+
+```javascript
+var list = ["small", "medium", "large"]
+const value = 'xlarge'
+var options = { notAllowed: list }
+const validations = { contains: list }
+const result = validate(value, validations) 
+/* {
+    value: 'xlarge',
+    errors: []
+} */
+
+var list = ["small", "medium", "large"]
+const value = 'small'
+var options = { notAllowed: list }
+const validations = { contains: list }
+const result = validate(value, validations) 
+/* {
+    value: 'small',
+    errors: [{ contains: ["small", "medium", "large"] }]
+} */
+
+var text = "lorem ipsum dolor"
+const value = 'hello'
+var options = { notAllowed: text }
+const validations = { contains: options }
+const result = validate(value, validations) 
+/* {
+    value: 'hello',
+    errors: []
+} */
+
+var text = "hello world"
+const value = 'hello'
+var options = { notAllowed: text }
+const validations = { contains: options }
+const result = validate(value, validations) 
+/* {
+    value: 'hello',
+    errors: [{ contains: "hello world" }]
+} */
+
+
+var object = { foo: true }
+const value = 'bar'
+var options = { notAllowed: object }
+const validations = { contains: options }
+const result = validate(value, validations) 
+/* {
+    value: 'bar',
+    errors: []
+} */
+
+var object = { foo: true }
+const value = 'foo'
+var options = { notAllowed: object }
+const validations = { contains: options }
+const result = validate(value, validations) 
+/* {
+    value: 'foo',
+     errors: [{ contains: { foo: true } }]
+} */
+
+```
+
+**using both options examples:**
+
+```javascript
+var allowedList = ["small", "medium", "large"]
+var notAllowedList = ["xlarge", "xxlarge", "tiny"]
+const value = 'large'
+var options = { allowed:allowedList, notAllowed: notAllowedList }
+const validations = { contains: options }
+const result = validate(value, validations) 
+/* {
+    value: 'xlarge',
+    errors: []
+} */
+
+var allowedList = ["small", "medium", "large"]
+var notAllowedList = ["xlarge", "xxlarge", "tiny"]
+const value = 'regular'
+var options = { allowed:allowedList, notAllowed: notAllowedList }
+const validations = { contains: options }
+const result = validate(value, validations) 
+/* {
+    value: 'regular',
+    errors: [{ notContains: ["small", "medium", "large"] }]
+} */
+
+var allowedList = ["small", "medium", "large"]
+var notAllowedList = ["xlarge", "xxlarge", "tiny"]
+const value = 'xlarge'
+var options = { allowed:allowedList, notAllowed: notAllowedList }
+const validations = { contains: list }
+const result = validate(value, validations) 
+/* {
+    value: 'regular',
+    errors: [
+             { notContains: ["small", "medium", "large"] },
+             { contains: ["xlarge", "xxlarge", "tiny"] }
+            ]
+} */
+
+
+```
 
 #### Length
 
@@ -173,75 +356,6 @@ const result = validate(value, validations)
 ```
 
 
-#### Exclusion
-
-`exclusion` -  The exclusion validator is useful for restriction certain value.
-It checks that the given value is not in the list given by the **within** option.
-
-You can specify **within** as a list, string or as an object (in which case the keys of the object are used).
-
-```javascript
-var list = ["small", "medium", "large"];
-const value = 'xlarge'
-const validations = { exclusion: list }
-const result = validate(value, validations) 
-/* {
-    value: 'xlarge',
-    errors: []
-} */
-
-var list = ["small", "medium", "large"];
-const value = 'small'
-const validations = { exclusion: list }
-const result = validate(value, validations) 
-/* {
-    value: 'small',
-    errors: [{ contains: ["small", "medium", "large"] }]
-} */
-
-var text = "lorem ipsum dolor";
-const value = 'hello'
-var options = { within: text };
-const validations = { exclusion: options }
-const result = validate(value, validations) 
-/* {
-    value: 'hello',
-    errors: []
-} */
-
-var text = "hello world";
-const value = 'hello'
-var options = { within: text };
-const validations = { exclusion: options }
-const result = validate(value, validations) 
-/* {
-    value: 'hello',
-    errors: [{ contains: "hello world" }]
-} */
-
-
-var object = { foo: true };
-const value = 'bar'
-var options = { within: object };
-const validations = { exclusion: options }
-const result = validate(value, validations) 
-/* {
-    value: 'bar',
-    errors: []
-} */
-
-var object = { foo: true };
-const value = 'foo'
-var options = { within: object };
-const validations = { exclusion: options }
-const result = validate(value, validations) 
-/* {
-    value: 'foo',
-     errors: [{ contains: { foo: true } }]
-} */
-
-```
-
 
 #### Format
 
@@ -270,75 +384,6 @@ const result = validate(value, validations)
 
 ```
 
-
-#### Inclusion
-
-`inclusion` -  The inclusion validator is useful for validating allowance in certain values.
-It checks that the given value exists in the list given by the **within** option.
-
-You can specify **within** as a list, string or as an object (in which case the keys of the object are used).
-
-```javascript
-var list = ["small", "medium", "large"];
-const value = 'small'
-const validations = { inclusion: list }
-const result = validate(value, validations) 
-/* {
-    value: 'small',
-    errors: []
-} */
-
-var list = ["small", "medium", "large"];
-const value = 'xlarge'
-const validations = { inclusion: list }
-const result = validate(value, validations) 
-/* {
-    value: 'xlarge',
-    errors: [{ notContains: ["small", "medium", "large"] }]
-} */
-
-var text = "hello world";
-const value = 'hello'
-var options = { within: text };
-const validations = { inclusion: options }
-const result = validate(value, validations) 
-/* {
-    value: 'hello',
-    errors: []
-} */
-
-var text = "lorem ipsum dolor";
-const value = 'hello'
-var options = { within: text };
-const validations = { inclusion: options }
-const result = validate(value, validations) 
-/* {
-    value: 'hello',
-    errors: [{ notContains: "lorem ipsum dolor" }]
-} */
-
-
-var object = { foo: true };
-const value = 'foo'
-var options = { within: object };
-const validations = { inclusion: options }
-const result = validate(value, validations) 
-/* {
-    value: 'foo',
-    errors: []
-} */
-
-var object = { foo: true };
-const value = 'bar'
-var options = { within: object };
-const validations = { inclusion: options }
-const result = validate(value, validations) 
-/* {
-    value: 'bar',
-     errors: [{ notContains: { foo: true } }]
-} */
-
-```
 
 
 #### Type
@@ -485,7 +530,7 @@ Suma is often called Brazilian ginseng due to it’s ability to increase strengt
 
 https://www.herbslist.net/
 
-https://en.wikipedia.org/wiki/Centella_asiatica
+https://en.wikipedia.org/wiki/Pfaffia_glomerata
 
 ### License
 
