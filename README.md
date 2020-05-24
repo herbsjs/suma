@@ -106,10 +106,10 @@ const result = validate(value, validations)
 
 
 const object = {type:"Fiat", model:"500", color:"white"}
-const value = 'price'
+const attr = 'price'
 const options = { allowed: object }
 const validations = { contains: options }
-const result = validate(value, validations) 
+const result = validate(attr, validations) 
 /* {
     value: 'price',
      errors: [{ notContains: {type:"Fiat", model:"500", color:"white"} }]
@@ -144,12 +144,12 @@ const result = validate(value, validations)
 
 
 const object = {type:"Fiat", model:"500", color:"white"}
-const value = 'type'
+const attr = 'type'
 const options = { notAllowed: object }
 const validations = { contains: options }
-const result = validate(value, validations) 
+const result = validate(attr, validations) 
 /* {
-    value: 'type',
+     value: 'type',
      errors: [{ contains: {type:"Fiat", model:"500", color:"white"} }]
 } */
 
