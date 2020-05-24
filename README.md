@@ -83,19 +83,10 @@ You can specify the validator as a list, string or as an object (in which case t
 **allowed option examples:**
 
 ```javascript
-var list = ["small", "medium", "large"]
-const value = 'small'
-var options = { allowed: list }
-const validations = { contains: options }
-const result = validate(value, validations) 
-/* {
-    value: 'small',
-    errors: []
-} */
 
-var list = ["small", "medium", "large"]
+const list = ["small", "medium", "large"]
 const value = 'xlarge'
-var options = { allowed: list }
+const options = { allowed: list }
 const validations = { contains: options }
 const result = validate(value, validations) 
 /* {
@@ -103,19 +94,9 @@ const result = validate(value, validations)
     errors: [{ notContains: ["small", "medium", "large"] }]
 } */
 
-var text = "hello world"
+const text = "lorem ipsum dolor"
 const value = 'hello'
-var options = { allowed: text }
-const validations = { contains: options }
-const result = validate(value, validations) 
-/* {
-    value: 'hello',
-    errors: []
-} */
-
-var text = "lorem ipsum dolor"
-const value = 'hello'
-var options = { allowed: text }
+const options = { allowed: text }
 const validations = { contains: options }
 const result = validate(value, validations) 
 /* {
@@ -124,24 +105,14 @@ const result = validate(value, validations)
 } */
 
 
-var object = { foo: true }
-const value = 'foo'
-var options = { allowed: object }
+const object = {type:"Fiat", model:"500", color:"white"}
+const value = 'price'
+const options = { allowed: object }
 const validations = { contains: options }
 const result = validate(value, validations) 
 /* {
-    value: 'foo',
-    errors: []
-} */
-
-var object = { foo: true }
-const value = 'bar'
-var options = { allowed: object }
-const validations = { contains: options }
-const result = validate(value, validations) 
-/* {
-    value: 'bar',
-     errors: [{ notContains: { foo: true } }]
+    value: 'price',
+     errors: [{ notContains: {type:"Fiat", model:"500", color:"white"} }]
 } */
 
 ```
@@ -149,19 +120,10 @@ const result = validate(value, validations)
 **notAllowed option examples:**
 
 ```javascript
-var list = ["small", "medium", "large"]
-const value = 'xlarge'
-var options = { notAllowed: list }
-const validations = { contains: list }
-const result = validate(value, validations) 
-/* {
-    value: 'xlarge',
-    errors: []
-} */
 
-var list = ["small", "medium", "large"]
+const list = ["small", "medium", "large"]
 const value = 'small'
-var options = { notAllowed: list }
+const options = { notAllowed: list }
 const validations = { contains: list }
 const result = validate(value, validations) 
 /* {
@@ -169,19 +131,10 @@ const result = validate(value, validations)
     errors: [{ contains: ["small", "medium", "large"] }]
 } */
 
-var text = "lorem ipsum dolor"
-const value = 'hello'
-var options = { notAllowed: text }
-const validations = { contains: options }
-const result = validate(value, validations) 
-/* {
-    value: 'hello',
-    errors: []
-} */
 
-var text = "hello world"
+const text = "hello world"
 const value = 'hello'
-var options = { notAllowed: text }
+const options = { notAllowed: text }
 const validations = { contains: options }
 const result = validate(value, validations) 
 /* {
@@ -190,24 +143,14 @@ const result = validate(value, validations)
 } */
 
 
-var object = { foo: true }
-const value = 'bar'
-var options = { notAllowed: object }
+const object = {type:"Fiat", model:"500", color:"white"}
+const value = 'type'
+const options = { notAllowed: object }
 const validations = { contains: options }
 const result = validate(value, validations) 
 /* {
-    value: 'bar',
-    errors: []
-} */
-
-var object = { foo: true }
-const value = 'foo'
-var options = { notAllowed: object }
-const validations = { contains: options }
-const result = validate(value, validations) 
-/* {
-    value: 'foo',
-     errors: [{ contains: { foo: true } }]
+    value: 'type',
+     errors: [{ contains: {type:"Fiat", model:"500", color:"white"} }]
 } */
 
 ```
@@ -215,21 +158,11 @@ const result = validate(value, validations)
 **using both options examples:**
 
 ```javascript
-var allowedList = ["small", "medium", "large"]
-var notAllowedList = ["xlarge", "xxlarge", "tiny"]
-const value = 'large'
-var options = { allowed:allowedList, notAllowed: notAllowedList }
-const validations = { contains: options }
-const result = validate(value, validations) 
-/* {
-    value: 'xlarge',
-    errors: []
-} */
 
-var allowedList = ["small", "medium", "large"]
-var notAllowedList = ["xlarge", "xxlarge", "tiny"]
+const allowedList = ["small", "medium", "large"]
+const notAllowedList = ["xlarge", "xxlarge", "tiny"]
 const value = 'regular'
-var options = { allowed:allowedList, notAllowed: notAllowedList }
+const options = { allowed:allowedList, notAllowed: notAllowedList }
 const validations = { contains: options }
 const result = validate(value, validations) 
 /* {
@@ -237,10 +170,10 @@ const result = validate(value, validations)
     errors: [{ notContains: ["small", "medium", "large"] }]
 } */
 
-var allowedList = ["small", "medium", "large"]
-var notAllowedList = ["xlarge", "xxlarge", "tiny"]
+const allowedList = ["small", "medium", "large"]
+const notAllowedList = ["xlarge", "xxlarge", "tiny"]
 const value = 'xlarge'
-var options = { allowed:allowedList, notAllowed: notAllowedList }
+const options = { allowed:allowedList, notAllowed: notAllowedList }
 const validations = { contains: list }
 const result = validate(value, validations) 
 /* {
@@ -372,15 +305,6 @@ const result = validate(value, validations)
     errors: [{ invalidFormat: true }]
 } */
 
-const pattern = new RegExp('^[0-9]{8}$', 'i') // or you can use ^[0-9]{8}$/i
-const value = '05541030'
-const validations = { format: pattern }
-const result = validate(value, validations) 
-/* {
-    value: '05541030',
-    errors: []
-} */
-
 
 ```
 
@@ -477,7 +401,7 @@ const result = validate(value, validations)
     errors: []
 } */
 
-var options = {schemes: ['ftp']}
+const options = {schemes: ['ftp']}
 const value = "ftp://google.com"
 const validations = { url: options }
 const result = validate(value, validations) 

@@ -96,19 +96,19 @@ class Checker {
             "(?:(?:" + schemes.join("|") + ")://)" +
             // user:pass authentication
             "(?:\\S+(?::\\S*)?@)?" +
-            "(?:";
+            "(?:"
 
-        var tld = "(?:\\.(?:[a-z\\u00a1-\\uffff]{2,}))";
+        var tld = "(?:\\.(?:[a-z\\u00a1-\\uffff]{2,}))"
 
         if (allowLocal) {
-            tld += "?";
+            tld += "?"
         } else {
             regex +=
                 // IP address exclusion
                 // private & local networks
                 "(?!(?:10|127)(?:\\.\\d{1,3}){3})" +
                 "(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})" +
-                "(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})";
+                "(?!172\\.(?:1[6-9]|2\\d|3[0-1])(?:\\.\\d{1,3}){2})"
         }
 
         regex +=
@@ -131,14 +131,14 @@ class Checker {
             "(?::\\d{2,5})?" +
             // resource path
             "(?:[/?#]\\S*)?" +
-            "$";
+            "$"
 
         if (allowDataUrl) {
             // RFC 2397
-            var mediaType = "\\w+\\/[-+.\\w]+(?:;[\\w=]+)*";
-            var urlchar = "[A-Za-z0-9-_.!~\\*'();\\/?:@&=+$,%]*";
-            var dataurl = "data:(?:" + mediaType + ")?(?:;base64)?," + urlchar;
-            regex = "(?:" + regex + ")|(?:^" + dataurl + "$)";
+            var mediaType = "\\w+\\/[-+.\\w]+(?:;[\\w=]+)*"
+            var urlchar = "[A-Za-z0-9-_.!~\\*'();\\/?:@&=+$,%]*"
+            var dataurl = "data:(?:" + mediaType + ")?(?:;base64)?," + urlchar
+            regex = "(?:" + regex + ")|(?:^" + dataurl + "$)"
         }
 
         return this.isValidFormat(value, new RegExp(regex, 'i'))
@@ -187,7 +187,7 @@ class Checker {
     }
 
     static isInteger(value) {
-        return this.isNumber(value) && value % 1 === 0;
+        return this.isNumber(value) && value % 1 === 0
     }
 
     static isBeforeThan(value, param) {

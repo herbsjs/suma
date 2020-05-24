@@ -26,7 +26,7 @@ describe("contains validation", () => {
 
     for (const value of samples) {
 
-      var options = { allowed: value[1] }
+      const options = { allowed: value[1] }
 
       // given
       const validations = { contains: options }
@@ -47,7 +47,7 @@ describe("contains validation", () => {
 
     for (const value of samples) {
 
-      var options = { notAllowed: value[1] }
+      const options = { notAllowed: value[1] }
 
       // given
       const validations = { contains: options }
@@ -61,14 +61,14 @@ describe("contains validation", () => {
 
   it("does not allows if the value is not included in an string and the conditional is allowed", () => {
     const samples = [
-      ["foo", "text", err.invalidInclusion],
-      ["bar", "lorem", err.invalidInclusion],
-      ["baz", "ipsum", err.invalidInclusion]
+      ["foo", "text", err.notContains],
+      ["bar", "lorem", err.notContains],
+      ["baz", "ipsum", err.notContains]
     ]
 
     for (const value of samples) {
 
-      var options = { allowed: value[1] }
+      const options = { allowed: value[1] }
 
       // given
       const validations = { contains: options }
@@ -84,14 +84,14 @@ describe("contains validation", () => {
 
   it("does not allows if the value is included in a string and the conditional is notAllowed", () => {
     const samples = [
-      ["foo", "foo", err.invalidExclusion],
-      ["bar", "bar", err.invalidExclusion],
-      ["baz", "baz", err.invalidExclusion]
+      ["foo", "foo", err.contains],
+      ["bar", "bar", err.contains],
+      ["baz", "baz", err.contains]
     ]
 
     for (const value of samples) {
 
-      var options = { notAllowed: value[1] }
+      const options = { notAllowed: value[1] }
 
       // given
       const validations = { contains: options }
@@ -114,7 +114,7 @@ describe("contains validation", () => {
 
     for (const value of samples) {
 
-      var options = { allowed: value[1] }
+      const options = { allowed: value[1] }
 
       // given
       const validations = { contains: options }
@@ -135,7 +135,7 @@ describe("contains validation", () => {
 
     for (const value of samples) {
 
-      var options = { notAllowed: value[1] }
+      const options = { notAllowed: value[1] }
 
       // given
       const validations = { contains: options }
@@ -148,13 +148,13 @@ describe("contains validation", () => {
 
   it("does not allow if the value is not included in an array and the conditional is allowed", () => {
     const samples = [
-      ["foo", ["x", "y", "z"], err.invalidInclusion],
-      ["bar", ["a", "b", "c"], err.invalidInclusion]
+      ["foo", ["x", "y", "z"], err.notContains],
+      ["bar", ["a", "b", "c"], err.notContains]
     ]
 
     for (const value of samples) {
 
-      var options = { allowed: value[1] }
+      const options = { allowed: value[1] }
 
       // given
       const validations = { contains: options }
@@ -169,13 +169,13 @@ describe("contains validation", () => {
 
   it("does not allow if the value is included in an array and the conditional is notAllowed", () => {
     const samples = [
-      ["x", ["x", "y", "z"], err.invalidExclusion],
-      ["a", ["a", "b", "c"], err.invalidExclusion]
+      ["x", ["x", "y", "z"], err.contains],
+      ["a", ["a", "b", "c"], err.contains]
     ]
 
     for (const value of samples) {
 
-      var options = { notAllowed: value[1] }
+      const options = { notAllowed: value[1] }
 
       // given
       const validations = { contains: options }
@@ -190,10 +190,10 @@ describe("contains validation", () => {
 
   it("allow if the value is included with option as array and the conditional is allowed", () => {
 
-    var sizes = ["small", "medium", "large"]
-    var value = "large"
+    const sizes = ["small", "medium", "large"]
+    const value = "large"
 
-    var options = { allowed: sizes }
+    const options = { allowed: sizes }
 
     // given
     const validations = { contains: options }
@@ -205,9 +205,9 @@ describe("contains validation", () => {
 
   it("allow if the value is not included with option as array and the conditional is notAllowed", () => {
 
-    var sizes = ["small", "medium", "large"]
-    var value = "xlarge"
-    var options = { notAllowed: sizes }
+    const sizes = ["small", "medium", "large"]
+    const value = "xlarge"
+    const options = { notAllowed: sizes }
     // given
     const validations = { contains: options }
     // when
@@ -218,10 +218,10 @@ describe("contains validation", () => {
 
   it("does not allow if the value is not included with option as array and the conditional is allowed", () => {
 
-    var sizes = ["small", "medium", "large"]
-    var value = "xlarge"
+    const sizes = ["small", "medium", "large"]
+    const value = "xlarge"
 
-    var options = { allowed: sizes }
+    const options = { allowed: sizes }
     // given
     const validations = { contains: options }
     // when
@@ -229,15 +229,15 @@ describe("contains validation", () => {
     // then
     assert.deepStrictEqual(ret, {
       value: value,
-      errors: [{ [err.invalidInclusion]: sizes }]
+      errors: [{ [err.notContains]: sizes }]
     })
   })
 
   it("does not allow if the value is included with option as array and the conditional is allowed", () => {
 
-    var sizes = ["small", "medium", "large"]
-    var value = "large"
-    var options = { notAllowed: sizes }
+    const sizes = ["small", "medium", "large"]
+    const value = "large"
+    const options = { notAllowed: sizes }
     // given
     const validations = { contains: options }
     // when
@@ -245,20 +245,20 @@ describe("contains validation", () => {
     // then
     assert.deepStrictEqual(ret, {
       value: value,
-      errors: [{ [err.invalidExclusion]: sizes }]
+      errors: [{ [err.contains]: sizes }]
     })
   })
 
 
   it("allow value is included in an object and the conditional is allowed", () => {
     const samples = [
-      ["foo", { foo: true }],
-      ["bar", { bar: true }]
+      ["type", {type:"Fiat", model:"500", color:"white"}],
+      ["price",  {type:"Ford", model:"Mustang", color:"black", price:8000}]
     ]
 
     for (const value of samples) {
 
-      var options = { allowed: value[1] }
+      const options = { allowed: value[1] }
 
       // given
       const validations = { contains: options }
@@ -274,13 +274,13 @@ describe("contains validation", () => {
 
   it("allow value if is not included in an object and the conditional is notAllowed", () => {
     const samples = [
-      ["foo", { bar: true }],
-      ["bar", { foo: true }]
+      ["price", {type:"Fiat", model:"500", color:"white"}],
+      ["year",  {type:"Ford", model:"Mustang", color:"black", price:8000}]
     ]
 
     for (const value of samples) {
 
-      var options = { notAllowed: value[1] }
+      const options = { notAllowed: value[1] }
 
       // given
       const validations = { contains: options }
@@ -297,15 +297,15 @@ describe("contains validation", () => {
 
   it("does not allow value is not included in an object and the conditional is allowed", () => {
     const samples = [
-      ["foo", { bar: true }, err.invalidInclusion],
-      ["bar", { foo: true }, err.invalidInclusion]
+      ["foo", { bar: true }, err.notContains],
+      ["bar", { foo: true }, err.notContains]
     ]
 
     for (const value of samples) {
 
-      var options = { allowed: value[1] }
+      const options = { allowed: value[1] }
 
-      // given
+      // given 
       const validations = { contains: options }
       // when
       const ret = validate(value[0], validations)
@@ -319,13 +319,13 @@ describe("contains validation", () => {
 
   it("does not allow if the value is included in an object", () => {
     const samples = [
-      ["foo", { foo: true }, err.invalidExclusion],
-      ["bar", { bar: true }, err.invalidExclusion]
+      ["foo", { foo: true }, err.contains],
+      ["bar", { bar: true }, err.contains]
     ]
 
     for (const value of samples) {
 
-      var options = { notAllowed: value[1] }
+      const options = { notAllowed: value[1] }
 
       // given
       const validations = { contains: options }
@@ -348,7 +348,7 @@ describe("contains validation", () => {
 
     for (const value of samples) {
 
-      var options = { allowed: value[2], notAllowed: value[1] }
+      const options = { allowed: value[2], notAllowed: value[1] }
 
       // given
       const validations = { contains: options }
@@ -361,12 +361,12 @@ describe("contains validation", () => {
 
   it("does not allow multiple validations with substring is invalid in a string and the conditional is allowed and notAllowed together", () => {
     const samples = [
-      ["hello", "hello", "hello world", err.invalidExclusion]
+      ["hello", "hello", "hello world", err.contains]
     ]
 
     for (const value of samples) {
 
-      var options = { allowed: value[1], notAllowed: value[2] }
+      const options = { allowed: value[1], notAllowed: value[2] }
 
       // given
       const validations = { contains: options }
@@ -379,12 +379,12 @@ describe("contains validation", () => {
 
   it("does not allow multiple validations with substring is valid in a string and the conditional is allowed and notAllowed together", () => {
     const samples = [
-      ["lorem", "hello world", "world", err.invalidInclusion]
+      ["lorem", "hello world", "world", err.notContains]
     ]
 
     for (const value of samples) {
 
-      var options = { allowed: value[1], notAllowed: value[2] }
+      const options = { allowed: value[1], notAllowed: value[2] }
 
       // given
       const validations = { contains: options }
@@ -399,7 +399,7 @@ describe("contains validation", () => {
   it("allow multiple validations with substring included and format with regex valid together and the conditional is allowed", () => {
 
     //zipcode regex
-    var pattern = /^[0-9]{8}$/
+    const pattern = /^[0-9]{8}$/
 
     const samples = [
       ["05541030", "05541030"]
@@ -407,7 +407,7 @@ describe("contains validation", () => {
 
     for (const value of samples) {
 
-      var options = { allowed: value[1] }
+      const options = { allowed: value[1] }
 
       // given
       const validations = { contains: options, format: pattern, presence: true }
@@ -421,7 +421,7 @@ describe("contains validation", () => {
   it("allow multiple validations with substring not included and format with regex valid together and the conditional is notAllowed", () => {
 
     //zipcode regex
-    var pattern = /^[0-9]{8}$/
+    const pattern = /^[0-9]{8}$/
 
     const samples = [
       ["05541030", "05541031"]
@@ -429,7 +429,7 @@ describe("contains validation", () => {
 
     for (const value of samples) {
 
-      var options = { notAllowed: value[1] }
+      const options = { notAllowed: value[1] }
 
       // given
       const validations = { contains: options, format: pattern, presence: true }
@@ -444,15 +444,15 @@ describe("contains validation", () => {
   it("does not allow multiple validations with substring not included and format with regex valid together and the conditional is allowed", () => {
 
     //zipcode regex
-    var pattern = /^[0-9]{8}$/
+    const pattern = /^[0-9]{8}$/
 
     const samples = [
-      ["05541030", "05541031", err.invalidInclusion]
+      ["05541030", "05541031", err.notContains]
     ]
 
     for (const value of samples) {
 
-      var options = { allowed: value[1] }
+      const options = { allowed: value[1] }
 
       // given
       const validations = { contains: options, format: pattern, presence: true }
@@ -466,15 +466,15 @@ describe("contains validation", () => {
   it("does not allow multiple validations with substring included and format with regex valid together and the conditional is notAllowed", () => {
 
     //zipcode regex
-    var pattern = /^[0-9]{8}$/
+    const pattern = /^[0-9]{8}$/
 
     const samples = [
-      ["05541030", "05541030", err.invalidExclusion]
+      ["05541030", "05541030", err.contains]
     ]
 
     for (const value of samples) {
 
-      var options = { notAllowed: value[1] }
+      const options = { notAllowed: value[1] }
 
       // given
       const validations = { contains: options, format: pattern, presence: true }
@@ -488,7 +488,7 @@ describe("contains validation", () => {
   it("does not allow multiple validations with substring included and format with regex not valid together and the conditional is allowed", () => {
 
     //zipcode regex
-    var pattern = /^[0-9]{8}$/
+    const pattern = /^[0-9]{8}$/
 
     const samples = [
       ["0554", "05541030", err.invalidFormat]
@@ -496,7 +496,7 @@ describe("contains validation", () => {
 
     for (const value of samples) {
 
-      var options = { allowed: value[1] }
+      const options = { allowed: value[1] }
 
       // given
       const validations = { contains: options, format: pattern, presence: true }
@@ -512,7 +512,7 @@ describe("contains validation", () => {
   it("does not allow multiple validations with substring not included and format with regex not valid together and the conditional is notAllowed", () => {
 
     //zipcode regex
-    var pattern = /^[0-9]{8}$/
+    const pattern = /^[0-9]{8}$/
 
     const samples = [
       ["12345", "05541030", err.invalidFormat]
@@ -520,7 +520,7 @@ describe("contains validation", () => {
 
     for (const value of samples) {
 
-      var options = { notAllowed: value[1] }
+      const options = { notAllowed: value[1] }
 
       // given
       const validations = { contains: options, format: pattern, presence: true }
