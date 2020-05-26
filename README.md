@@ -321,7 +321,7 @@ Validators:
 - [X] format - regex
 - [X] date - earliest, latest
 - [X] url
-- [ ] common formats - email, etc
+- [X] email
 - [ ] enums/lists - validate if value exists in the given list
 - [ ] reject list - validate if value does not exists in the given list 
 
