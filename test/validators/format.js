@@ -67,6 +67,28 @@ describe("format validation", () => {
 
     })
 
+
+    it('does not allow invalid formats', () => {
+
+        const samples = [
+            ["new RegExp('^[0-9]{8}$')", 'f05541030'],
+            [null, true],
+            [26130014, 26130014],
+            [undefined, 05541030],
+            [{ regex: /\S+@\S+\.\S+/i}, 'sampleemail.com']
+        ]
+
+        for (const value of samples) {
+            // given
+            const validations = { format: value[0] }
+            // when
+            const ret = validate(value[1], validations)
+            // then
+            assert.deepStrictEqual(ret, { value: value[1], errors: [{ [err.invalidFormat]: true }] })
+        }
+
+    })
+
     it("allows expressions that uses flags pattern", function () {
 
         //zipcode regex
