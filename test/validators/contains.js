@@ -233,7 +233,7 @@ describe("contains validation", () => {
     })
   })
 
-  it("does not allow if the value is included with option as array and the conditional is allowed", () => {
+  it("does not allow if the value is included with option as array and the conditional is notAllowed", () => {
 
     const sizes = ["small", "medium", "large"]
     const value = "large"
@@ -249,6 +249,23 @@ describe("contains validation", () => {
     })
   })
 
+  it("does not allow if the value is included with option as array and the conditional is notAllowed and if the value is not included with option as array and the conditional is allowed", () => {
+
+    var allowedList = ["small", "medium", "large"]
+    var notAllowedList = ["xlarge", "xxlarge", "tiny"]
+    const value = 'xlarge'
+    var options = { allowed:allowedList, notAllowed: notAllowedList }
+
+    // given
+    const validations = { contains: options }
+    // when
+    const ret = validate(value, validations)
+    // then
+    assert.deepStrictEqual(ret, {
+      value: value,
+      errors: [{ [err.notContains]: allowedList },{ [err.contains]: notAllowedList }]
+    })
+  })
 
   it("allow value is included in an object and the conditional is allowed", () => {
     const samples = [
@@ -440,7 +457,6 @@ describe("contains validation", () => {
     }
   })
 
-
   it("does not allow multiple validations with substring not included and format with regex valid together and the conditional is allowed", () => {
 
     //zipcode regex
@@ -506,8 +522,6 @@ describe("contains validation", () => {
       assert.deepStrictEqual(ret, { value: value[0], errors: [{ [value[2]]: true }] })
     }
   })
-
-
 
   it("does not allow multiple validations with substring not included and format with regex not valid together and the conditional is notAllowed", () => {
 

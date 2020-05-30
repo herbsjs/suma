@@ -84,20 +84,16 @@ You can specify the validator as a list, string or as an object (in which case t
 
 ```javascript
 
-const list = ["small", "medium", "large"]
 const value = 'xlarge'
-const options = { allowed: list }
-const validations = { contains: options }
+const validations = { contains: { allowed: ["small", "medium", "large"] } }
 const result = validate(value, validations) 
 /* {
     value: 'xlarge',
     errors: [{ notContains: ["small", "medium", "large"] }]
 } */
 
-const text = "lorem ipsum dolor"
 const value = 'hello'
-const options = { allowed: text }
-const validations = { contains: options }
+const validations = { contains: { allowed: "lorem ipsum dolor" } }
 const result = validate(value, validations) 
 /* {
     value: 'hello',
@@ -105,10 +101,8 @@ const result = validate(value, validations)
 } */
 
 
-const object = {type:"Fiat", model:"500", color:"white"}
 const attr = 'price'
-const options = { allowed: object }
-const validations = { contains: options }
+const validations = { contains: { allowed: {type:"Fiat", model:"500", color:"white"} } }
 const result = validate(attr, validations) 
 /* {
     value: 'price',
@@ -121,10 +115,8 @@ const result = validate(attr, validations)
 
 ```javascript
 
-const list = ["small", "medium", "large"]
 const value = 'small'
-const options = { notAllowed: list }
-const validations = { contains: list }
+const validations = { contains: { notAllowed: ["small", "medium", "large"] } }
 const result = validate(value, validations) 
 /* {
     value: 'small',
@@ -132,10 +124,8 @@ const result = validate(value, validations)
 } */
 
 
-const text = "hello world"
 const value = 'hello'
-const options = { notAllowed: text }
-const validations = { contains: options }
+const validations = { contains: { notAllowed: "hello world" } }
 const result = validate(value, validations) 
 /* {
     value: 'hello',
@@ -143,10 +133,8 @@ const result = validate(value, validations)
 } */
 
 
-const object = {type:"Fiat", model:"500", color:"white"}
 const attr = 'type'
-const options = { notAllowed: object }
-const validations = { contains: options }
+const validations = { contains: { notAllowed: {type:"Fiat", model:"500", color:"white"} } }
 const result = validate(attr, validations) 
 /* {
      value: 'type',
@@ -159,25 +147,19 @@ const result = validate(attr, validations)
 
 ```javascript
 
-const allowedList = ["small", "medium", "large"]
-const notAllowedList = ["xlarge", "xxlarge", "tiny"]
 const value = 'regular'
-const options = { allowed:allowedList, notAllowed: notAllowedList }
-const validations = { contains: options }
+const validations = { contains: { notAllowed: ["xlarge", "xxlarge", "tiny"], allowed: ["small", "medium", "large"] } }
 const result = validate(value, validations) 
 /* {
     value: 'regular',
     errors: [{ notContains: ["small", "medium", "large"] }]
 } */
 
-const allowedList = ["small", "medium", "large"]
-const notAllowedList = ["xlarge", "xxlarge", "tiny"]
 const value = 'xlarge'
-const options = { allowed:allowedList, notAllowed: notAllowedList }
-const validations = { contains: list }
+const validations = { contains: { notAllowed: ["xlarge", "xxlarge", "tiny"], allowed: ["small", "medium", "large"] } }
 const result = validate(value, validations) 
 /* {
-    value: 'regular',
+    value: 'xlarge',
     errors: [
              { notContains: ["small", "medium", "large"] },
              { contains: ["xlarge", "xxlarge", "tiny"] }
