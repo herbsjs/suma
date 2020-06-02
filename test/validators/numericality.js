@@ -32,6 +32,27 @@ describe('numericality validation', () => {
         }
     })
 
+    it('does allows invalid numeric values', () => {
+
+        expected = Error
+
+        const samples = [
+            [1, { equalTo: 'a' }],
+            [1, { greaterThan: 'b' }],           
+            [1, { greaterThanOrEqualTo: 'v' }],
+            [0, { lessThan: undefined }],
+            [1, { lessThanOrEqualTo: 'y' }]
+        ]
+        for (const value of samples) {
+            // given
+            const validations = { numericality: value[1] }
+            // when
+            const ret = () => validate(value[0], validations)
+            // then
+            assert.throws(ret, expected)
+        }
+    })
+    
     it('does allows valid numeric values with multiple params', () => {
         // given
         const value = 123

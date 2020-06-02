@@ -23,6 +23,25 @@ describe('length validation', () => {
         }
     })
 
+    it('does not allows values with the invalid length', () => {
+
+        expected = Error
+        const samples = [
+            ['text', { minimum: "x" }],
+            ['text', { maximum: undefined }],
+            ['text', { is: "9" }],
+
+        ]
+        for (const value of samples) {
+            // given
+            const validations = { length: value[1] }
+            // when
+            const ret = () => validate(value[0], validations)
+            // then
+            assert.throws(ret, expected)
+        }
+    })
+
     it('does allows values with the right length with multiple params', () => {
         // given
         const value = 'text'
