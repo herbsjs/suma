@@ -172,6 +172,23 @@ const result = validate(value, validations)
 } */
 ```
 
+#### E-mail
+
+The email validator attempts to make sure the input is a valid email.
+Validating emails is tricky business due to the complex rules of email address formatting.
+
+For example **john.doe@gmail** is a perfectly valid email but it's most likely just the case that John has forgotten to write .com at the end.
+
+```javascript
+const value = 'just\"not\"right@example.com'
+const validations = { email: true }
+const result = validate(value, validations) 
+/* {
+    value: 'just\"not\"right@example.com'
+    errors: [{ invalidEmail: true }]
+} */
+```
+
 #### Format
 
 `format` (regex) -The format validator will validate a value against a regular expression of your chosing.
@@ -304,7 +321,7 @@ Validators:
 - [X] format - regex
 - [X] date - earliest, latest
 - [X] url
-- [ ] common formats - email, etc
+- [X] email
 - [ ] enums/lists - validate if value exists in the given list
 - [ ] reject list - validate if value does not exists in the given list 
 
