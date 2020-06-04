@@ -66,7 +66,8 @@ describe("format validation", () => {
         }
 
     })
-    
+
+
     it('does not allow invalid formats', () => {
 
         const samples = [
@@ -87,6 +88,7 @@ describe("format validation", () => {
         }
 
     })
+
     it("allows expressions that uses flags pattern", function () {
 
         //zipcode regex

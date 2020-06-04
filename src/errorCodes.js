@@ -17,9 +17,10 @@ const codes = {
     notAt: 'notAt',
     notADate: 'notADate',
     invalidFormat: 'invalidFormat',
-    invalidURL: 'invalidURL',
     notContains: 'notContains',
-    contains: 'contains'
+    contains: 'contains',
+    invalidURL: 'invalidURL',
+    invalidEmail: 'invalidEmail'
 }
 
 module.exports = codes
