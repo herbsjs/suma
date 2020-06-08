@@ -17,6 +17,8 @@ const codes = {
     notAt: 'notAt',
     notADate: 'notADate',
     invalidFormat: 'invalidFormat',
+    notContains: 'notContains',
+    contains: 'contains',
     invalidURL: 'invalidURL',
     invalidEmail: 'invalidEmail'
 }

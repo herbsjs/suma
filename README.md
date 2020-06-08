@@ -1,6 +1,6 @@
- <p align="center"><img src="https://raw.githubusercontent.com/herbsjs/suma/master/docs/logo.png" height="220"></p> 
+ <p align="center"><img src="https://raw.githubusercontent.com/herbsjs/suma/master/docs/logo.png" height="220"></p>  
 
-![Node.js CI](https://github.com/herbsjs/suma/workflows/Node.js%20CI/badge.svg?branch=master)
+![CI Build](https://github.com/herbsjs/suma/workflows/Node.js%20CI/badge.svg?branch=master) [![codecov](https://codecov.io/gh/herbsjs/suma/branch/master/graph/badge.svg)](https://codecov.io/gh/herbsjs/suma)
 
 # Suma
 
@@ -70,6 +70,104 @@ const result = validate(value, validations)
 | {}            |                   |       Valid       |
 | null          |                   |                   |  
 | undefined     |                   |                   |  
+
+
+
+#### Contains
+
+`contains` -  The contains validator is useful for validating allowance or restriction in certain values.
+It checks that the given value exists in the target given by the **allowed** or  **notAllowed** option.
+
+You can specify the validator as a list, string or as an object (in which case the keys of the object are used).
+
+**allowed option examples:**
+
+```javascript
+
+const value = 'xlarge'
+const validations = { contains: { allowed: ["small", "medium", "large"] } }
+const result = validate(value, validations) 
+/* {
+    value: 'xlarge',
+    errors: [{ notContains: ["small", "medium", "large"] }]
+} */
+
+const value = 'hello'
+const validations = { contains: { allowed: "lorem ipsum dolor" } }
+const result = validate(value, validations) 
+/* {
+    value: 'hello',
+    errors: [{ notContains: "lorem ipsum dolor" }]
+} */
+
+
+const attr = 'price'
+const validations = { contains: { allowed: {type:"Fiat", model:"500", color:"white"} } }
+const result = validate(attr, validations) 
+/* {
+    value: 'price',
+     errors: [{ notContains: {type:"Fiat", model:"500", color:"white"} }]
+} */
+
+```
+
+**notAllowed option examples:**
+
+```javascript
+
+const value = 'small'
+const validations = { contains: { notAllowed: ["small", "medium", "large"] } }
+const result = validate(value, validations) 
+/* {
+    value: 'small',
+    errors: [{ contains: ["small", "medium", "large"] }]
+} */
+
+
+const value = 'hello'
+const validations = { contains: { notAllowed: "hello world" } }
+const result = validate(value, validations) 
+/* {
+    value: 'hello',
+    errors: [{ contains: "hello world" }]
+} */
+
+
+const attr = 'type'
+const validations = { contains: { notAllowed: {type:"Fiat", model:"500", color:"white"} } }
+const result = validate(attr, validations) 
+/* {
+     value: 'type',
+     errors: [{ contains: {type:"Fiat", model:"500", color:"white"} }]
+} */
+
+```
+
+**using both options examples:**
+
+```javascript
+
+const value = 'regular'
+const validations = { contains: { notAllowed: ["xlarge", "xxlarge", "tiny"], allowed: ["small", "medium", "large"] } }
+const result = validate(value, validations) 
+/* {
+    value: 'regular',
+    errors: [{ notContains: ["small", "medium", "large"] }]
+} */
+
+const value = 'xlarge'
+const validations = { contains: { notAllowed: ["xlarge", "xxlarge", "tiny"], allowed: ["small", "medium", "large"] } }
+const result = validate(value, validations) 
+/* {
+    value: 'xlarge',
+    errors: [
+             { notContains: ["small", "medium", "large"] },
+             { contains: ["xlarge", "xxlarge", "tiny"] }
+            ]
+} */
+
+
+```
 
 #### Length
 
@@ -194,6 +292,7 @@ const result = validate(value, validations)
 `format` (regex) -The format validator will validate a value against a regular expression of your chosing.
 
 ```javascript
+
 const pattern = /^[0-9]{8}$/ // or you can use new RegExp('^[0-9]{8}$')
 const value = '05547-022'
 const validations = { format: pattern }
@@ -202,7 +301,11 @@ const result = validate(value, validations)
     value: '05547-022',
     errors: [{ invalidFormat: true }]
 } */
+
+
 ```
+
+
 
 #### Type
 
@@ -295,7 +398,7 @@ const result = validate(value, validations)
     errors: []
 } */
 
-var options = {schemes: ['ftp']}
+const options = {schemes: ['ftp']}
 const value = "ftp://google.com"
 const validations = { url: options }
 const result = validate(value, validations) 
@@ -322,8 +425,8 @@ Validators:
 - [X] date - earliest, latest
 - [X] url
 - [X] email
-- [ ] enums/lists - validate if value exists in the given list
-- [ ] reject list - validate if value does not exists in the given list 
+- [X] enums/lists - validate if value exists in the given list
+- [X] reject list - validate if value does not exists in the given list 
 
 Features:
 - [X] Error message only
@@ -348,7 +451,7 @@ Suma is often called Brazilian ginseng due to it’s ability to increase strengt
 
 https://www.herbslist.net/
 
-https://en.wikipedia.org/wiki/Centella_asiatica
+https://en.wikipedia.org/wiki/Pfaffia_glomerata
 
 ### License
 

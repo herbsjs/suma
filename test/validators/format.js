@@ -104,7 +104,7 @@ describe("format validation", () => {
 
     })
 
-    it("doesn't allow partial matches", function () {
+    it("does not allow partial matches", function () {
 
         //zipcode regex
         var pattern = new RegExp('\\.png$', 'g')
@@ -131,6 +131,21 @@ describe("format validation", () => {
         const ret = validate(value, validations)
         // then
         assert.deepStrictEqual(ret, { value: value, errors: [] })
+
+    })
+
+    it("does not allow non regex expressions as validation", function () {
+
+        //suppositional regex
+        var pattern = 'abc'
+
+        const value = "05541030"
+        // given
+        const validations = { format: pattern }
+        // when
+        const ret = validate(value, validations)
+        // then
+        assert.deepStrictEqual(ret, { value: value, errors: [{ [err.invalidFormat]: true }]})
 
     })
 
