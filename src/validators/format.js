@@ -1,4 +1,4 @@
-const checker = require("../checker");
+const checker = require("../checker")
 const err = require("../errorCodes")
 
 function format(value, expression) {
