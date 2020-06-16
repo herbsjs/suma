@@ -21,8 +21,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: npm install
+      working-directory: ./
+      run: npm i --ignore-scripts
     - run: npm ci
-    - run: npm i eslint
     - run: npm run build --if-present
     - run: npm test
     - run: npx nyc --reporter=lcov npm test && npx codecov
@@ -34,5 +36,5 @@ jobs:
       uses: ninosaurus/eslint-check@v5
       with:
         eslint-config-path: "./.eslintrc.json"
-        custom-directory: "./src"
+        custom-directory: "./"
         repo-token: ${{secrets.GITHUB_TOKEN}}
