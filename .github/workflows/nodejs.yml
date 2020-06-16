@@ -32,3 +32,8 @@ jobs:
         CI: true
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1.0.7
+    - name: Run ESLint
+      uses: ninosaurus/eslint-check@v5
+      with:
+        eslint-config-path: "./.eslintrc.json"
+        custom-directory: "./src"
