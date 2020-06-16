@@ -114,5 +114,5 @@ dist
 .yarn/build-state.yml
 .pnp.*
 .editorconfig
-.eslintrc.json
+/.eslintrc.json
 .prettierrc

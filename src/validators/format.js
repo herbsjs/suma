@@ -1,5 +1,5 @@
-const checker = require("../checker");
-const err = require("../errorCodes");
+const checker = require("../checker")
+const err = require("../errorCodes")
 
 function format(value, expression) {
   if (checker.isEmpty(value)) return null
@@ -7,4 +7,4 @@ function format(value, expression) {
   return result ? null: { [err.invalidFormat]: true }
 }
 
-module.exports = format;
+module.exports = format
