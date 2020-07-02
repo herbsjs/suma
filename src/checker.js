@@ -1,5 +1,6 @@
 class Checker {
   static isFunction(value) {
+    const err = errorCodes
     return typeof value === 'function'
   }
 
