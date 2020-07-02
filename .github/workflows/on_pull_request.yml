@@ -29,9 +29,9 @@ jobs:
         CI: true
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1.0.7
-    - name: Run ESLint
-      uses: ninosaurus/eslint-check@v5
-      with:
-        eslint-config-path: "./.github/eslint/.eslintrc.json"
-        custom-directory: "./"
-        repo-token: ${{secrets.GITHUB_TOKEN}}
+    - name: Run Super Linter - ESLint
+      uses: github/super-linter@v3.2.0
+      env:
+        VALIDATE_ALL_CODEBASE: false
+        DEFAULT_BRANCH: master
+        JAVASCRIPT_ES_CONFIG_FILE: "./.github/eslint/.eslintrc.json"
