@@ -33,4 +33,4 @@ jobs:
       uses: docker://github/super-linter:v3
       env:
         VALIDATE_ALL_CODEBASE: false
-        JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.yml
+        JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
