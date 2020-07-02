@@ -30,8 +30,7 @@ jobs:
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1.0.7
     - name: Run Super Linter - ESLint
-      uses: github/super-linter@v3.2.0
+      uses: docker://github/super-linter:v3
       env:
         VALIDATE_ALL_CODEBASE: false
-        DEFAULT_BRANCH: master
         JAVASCRIPT_ES_CONFIG_FILE: "./.github/eslint/.eslintrc.json"
