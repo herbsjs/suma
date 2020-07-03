@@ -20,19 +20,6 @@ globals:
 parserOptions:
   ecmaVersion: 2018
 
-###############
-# Extends vars #
-###############
-extends:
-  # https://github.com/prettier/eslint-config-prettier
-  - prettier
-
-###########
-# Plugins #
-###########
-plugins:
-  - 'prettier'
-
 #########
 # Rules #
 #########
