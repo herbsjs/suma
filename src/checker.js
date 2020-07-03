@@ -1,7 +1,6 @@
 class Checker {
   static isFunction(value) {
-    return typeof value === 'function';
-    var e
+    return typeof value === 'function'
   }
 
   static isDefined(value) {
