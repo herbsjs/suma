@@ -51,7 +51,6 @@
             VALIDATE_ALL_CODEBASE: true
             DEFAULT_BRANCH: master
             LINTER_RULES_PATH: .github/linters            
-            VALIDATE_JSON: true
             VALIDATE_JAVASCRIPT_STANDARD: false
             VALIDATE_JAVASCRIPT_ES: true                       
             DISABLE_ERRORS: false
