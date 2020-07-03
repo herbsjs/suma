@@ -46,7 +46,7 @@
         # Run Linter against code base #
         ################################
         - name: Lint Code Base
-          uses: docker://github/super-linter:v3.2.0
+          uses: docker://github/super-linter:v3.0.1
           env:
             VALIDATE_ALL_CODEBASE: true
             LINTER_RULES_PATH: .github/linters
