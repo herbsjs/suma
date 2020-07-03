@@ -49,8 +49,8 @@
           uses: docker://github/super-linter:v3.2.0
           env:
             VALIDATE_ALL_CODEBASE: true
-            DEFAULT_BRANCH: develop
-            LINTER_RULES_PATH: .github/linters            
+            LINTER_RULES_PATH: .github/linters   
+            JAVASCRIPT_ES_CONFIG_FILE: .eslintrcruler.yml         
             VALIDATE_JAVASCRIPT_STANDARD: false
             VALIDATE_JAVASCRIPT_ES: true                       
             DISABLE_ERRORS: false
