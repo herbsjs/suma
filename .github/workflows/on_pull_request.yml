@@ -32,6 +32,5 @@ jobs:
     - name: Run Super Linter - ESLint
       uses: docker://github/super-linter:v3
       env:
-        VALIDATE_JAVASCRIPT_ES: true
         JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
         VALIDATE_JAVASCRIPT_STANDARD: false
