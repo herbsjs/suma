@@ -1,5 +1,5 @@
 class Checker {
-  static isFunction(value) {    
+  static isFunction(value) {
     return typeof value === 'function'
   }
 
@@ -218,26 +218,26 @@ class Checker {
     return value > param
   }
 
-    static isAt(value, param) {
-        if (!this.isDate(value)) throw Error(`Invalid value. It must be a date.`)
-        return value.valueOf() === param.valueOf()
-    }
+  static isAt(value, param) {
+    if (!this.isDate(value)) throw Error(`Invalid value. It must be a date.`)
+    return value.valueOf() === param.valueOf()
+  }
 
-    static contains(object, value) {
-        if (!this.isDefined(object)) {
-            return false
-        }
-        if (this.isArray(object)) {
-            return object.indexOf(value) !== -1
-        }
-        if (this.isString(object)) {
-            return object.includes(value)
-        }
-        if (this.isObject(object)) {
-            return value in object
-        }
-        return false
+  static contains(object, value) {
+    if (!this.isDefined(object)) {
+      return false
     }
+    if (this.isArray(object)) {
+      return object.indexOf(value) !== -1
+    }
+    if (this.isString(object)) {
+      return object.includes(value)
+    }
+    if (this.isObject(object)) {
+      return value in object
+    }
+    return false
+  }
 }
 
 module.exports = Checker
