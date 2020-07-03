@@ -30,6 +30,5 @@
     "prettier": "^2.0.5"
   },
   "author": "David Lojudice Sobrinho",
-  "license": "MIT",
-  "dependencies": {}
+  "license": "MIT"
 }
