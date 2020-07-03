@@ -19,6 +19,14 @@ globals:
 parserOptions:
   ecmaVersion: 2018
 
+
+###############
+# Extends vars #
+###############
+extends:
+  # https://github.com/prettier/eslint-config-prettier
+  - prettier
+
 ###########
 # Plugins #
 ###########
@@ -28,12 +36,11 @@ plugins:
 #########
 # Rules #
 #########
-rules: {
-  "semi": ["error", "never"],
-  "func-names": 0,
-  "no-param-reassign": 0,
-  "no-multi-str": 0,
-  "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
-  "no-console": ["error", { "allow": ["tron"] }],
-  "consistent-return": 0
-}
+rules: 
+  semi: ["error", "never"]
+  func-names: 0
+  no-param-reassign: 0
+  no-multi-str: 0
+  no-unused-vars: ["error", { "argsIgnorePattern": "^_" }]
+  no-console: ["error", { "allow": ["tron"] }]
+  consistent-return: 0
