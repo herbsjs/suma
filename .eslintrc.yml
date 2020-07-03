@@ -5,6 +5,7 @@
 env:
   commonjs: true
   node: true
+  es6: false
 
 ###############
 # Global Vars #
@@ -36,13 +37,17 @@ plugins:
 # Rules #
 #########
 rules:
-  semi: 2
+  semi: 
+    - 2
+    - never
   func-names: 0
   no-param-reassign: 0
   no-multi-str: 0
   no-unused-vars:
     - 2
     - vars: all
-      args: after-used
-  no-console: 2
+      argsIgnorePattern: "^_"
+  no-console:
+    - 2
+    - allow: [tron]
   consistent-return: 0
