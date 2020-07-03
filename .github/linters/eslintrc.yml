@@ -19,7 +19,6 @@ globals:
 parserOptions:
   ecmaVersion: 2018
 
-
 ###############
 # Extends vars #
 ###############
@@ -36,11 +35,14 @@ plugins:
 #########
 # Rules #
 #########
-rules: 
-  semi: ["error", "never"]
+rules:
+  semi: 2
   func-names: 0
   no-param-reassign: 0
   no-multi-str: 0
-  no-unused-vars: ["error", { "argsIgnorePattern": "^_" }]
-  no-console: ["error", { "allow": ["tron"] }]
+  no-unused-vars:
+    - 2
+    - vars: all
+      args: after-used
+  no-console: 2
   consistent-return: 0
