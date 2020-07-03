@@ -1,18 +1,10 @@
 ---
-
-#############################
-#############################
-## JavaScript Linter rules ##
-#############################
-#############################
-
 ############
 # Env Vars #
 ############
 env:
-  browser: true
-  es6: true
-  jest: true
+  commonjs: true
+  node: true
 
 ###############
 # Global Vars #
@@ -24,18 +16,24 @@ globals:
 ###############
 # Parser vars #
 ###############
-parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: 2018
-  sourceType: module
 
 ###########
 # Plugins #
 ###########
 plugins:
-  - '@typescript-eslint'
+  - 'prettier'
 
 #########
 # Rules #
 #########
-rules: {}
+rules: {
+  "semi": ["error", "never"],
+  "func-names": 0,
+  "no-param-reassign": 0,
+  "no-multi-str": 0,
+  "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+  "no-console": ["error", { "allow": ["tron"] }],
+  "consistent-return": 0
+}
