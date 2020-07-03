@@ -24,7 +24,7 @@ parserOptions:
 # Rules #
 #########
 rules:
-  semi: 
+  semi:
     - 2
     - never
   func-names: 0
