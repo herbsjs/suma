@@ -1,6 +1,5 @@
 const assert = require('assert')
-const { validate, errorCodes } = require('../src/suma')
-const err = errorCodes
+const { validate } = require('../src/suma')
 
 describe('suma', () => {
 
@@ -55,6 +54,7 @@ describe('suma', () => {
             const value = 1
             const validations = { notAValidValidator: true }
             try {
+                // eslint-disable-next-line no-unused-vars
                 const ret = validate(value, validations)
                 done('Error')
             }
