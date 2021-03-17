@@ -408,6 +408,51 @@ const result = validate(value, validations)
 } */
 ```
 
+### Custom functions
+Execute custom functions to specific validations cases
+
+`propName` (string) - Name of the validation rule returned on error
+
+`validation` (function: boolean) - Function that will be called with value argument
+
+```javascript
+const cardNumber = "1234";
+
+// Single Validation
+const propName = "invalidCardNumber";
+const validation = (value) => value.length === 16;
+const validations = {
+    custom: {
+        [propName]: validation,
+    },
+};
+const result = validate(cardNumber, validations);
+/* {
+    value: '1234',
+    errors: [{ "invalidCardNumber": true }]
+} */
+//
+
+// Many rules
+const validations = {
+    custom: {
+        invalidCardNumber: (value) => value.length === 16,
+        invalidDigit: (value) => value[0] !== "2",
+    },
+};
+const result = validate(cardNumber, validations);
+/* {
+    value: '1234',
+    errors: [
+        {  "invalidCardNumber": true },
+        {  "invalidDigit": true },
+    }]
+} */
+//
+
+
+```
+
 ### Null Values
 
 The `type`, `length`, `numericality`, `format` and `datetime` validators won't validate a value if it's `null` or `undefined`.
@@ -432,7 +477,7 @@ Features:
 - [X] Error message only
 - [X] No dependency 
 - [X] Doc every validators property
-- [ ] Allow a custom functions for validaton
+- [X] Allow a custom functions for validaton
 - [ ] Allow a conditional `if` functions for validaton
 - [ ] Be able to inject a diferent `checker`
 - [ ] Better checks on validator's `params`
