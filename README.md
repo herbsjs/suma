@@ -415,7 +415,7 @@ Execute custom functions to specific validations cases
 
 `propName` (string) - Name of the validation rule returned on error - *this is optional, see below example of usage*
 
-`validation` (function: boolean) - Function that will be called with value argument
+`validation` (function: boolean) - Function that will be called with value argument *this is optional, see below example of usage*
 
 ```javascript
 
