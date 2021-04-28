@@ -1,4 +1,4 @@
- <p align="center"><img src="https://raw.githubusercontent.com/herbsjs/suma/master/docs/logo.png" height="220"></p>  
+ <p align="center"><img src="https://raw.githubusercontent.com/herbsjs/suma/master/docs/logo.png" height="220"></p>
 
 ![CI Build](https://github.com/herbsjs/suma/workflows/Node.js%20CI/badge.svg?branch=master) [![codecov](https://codecov.io/gh/herbsjs/suma/branch/master/graph/badge.svg)](https://codecov.io/gh/herbsjs/suma)
 
@@ -20,7 +20,7 @@ const { validate } = require('suma')
 
 const value = null
 const validations = { presence: true }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: null,
     errors: [{ cantBeEmpty: true }]
@@ -36,7 +36,7 @@ const result = validate(value, validations)
 ```javascript
 const value = ''
 const validations = { presence: true }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: '',
     errors: [{ cantBeEmpty: true }]
@@ -50,7 +50,7 @@ const result = validate(value, validations)
 ```javascript
 const value = null
 const validations = { allowNull: false }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: null,
     errors: [{ cantBeNull: true }]
@@ -59,17 +59,17 @@ const result = validate(value, validations)
 
 #### Presence vs allowNull
 
-|               | presence: true    | allowNull: false  | 
+|               | presence: true    | allowNull: false  |
 | ------------- | ------------------| ----------------  |
-| 'Text'        |       Valid       |       Valid       | 
+| 'Text'        |       Valid       |       Valid       |
 | 123           |       Valid       |       Valid       |
 | 0             |       Valid       |       Valid       |
 | ' '           |                   |       Valid       |
 | ''            |                   |       Valid       |
 | []            |                   |       Valid       |
 | {}            |                   |       Valid       |
-| null          |                   |                   |  
-| undefined     |                   |                   |  
+| null          |                   |                   |
+| undefined     |                   |                   |
 
 
 
@@ -86,7 +86,7 @@ You can specify the validator as a list, string or as an object (in which case t
 
 const value = 'xlarge'
 const validations = { contains: { allowed: ["small", "medium", "large"] } }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: 'xlarge',
     errors: [{ notContains: ["small", "medium", "large"] }]
@@ -94,7 +94,7 @@ const result = validate(value, validations)
 
 const value = 'hello'
 const validations = { contains: { allowed: "lorem ipsum dolor" } }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: 'hello',
     errors: [{ notContains: "lorem ipsum dolor" }]
@@ -103,7 +103,7 @@ const result = validate(value, validations)
 
 const attr = 'price'
 const validations = { contains: { allowed: {type:"Fiat", model:"500", color:"white"} } }
-const result = validate(attr, validations) 
+const result = validate(attr, validations)
 /* {
     value: 'price',
      errors: [{ notContains: {type:"Fiat", model:"500", color:"white"} }]
@@ -117,7 +117,7 @@ const result = validate(attr, validations)
 
 const value = 'small'
 const validations = { contains: { notAllowed: ["small", "medium", "large"] } }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: 'small',
     errors: [{ contains: ["small", "medium", "large"] }]
@@ -126,7 +126,7 @@ const result = validate(value, validations)
 
 const value = 'hello'
 const validations = { contains: { notAllowed: "hello world" } }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: 'hello',
     errors: [{ contains: "hello world" }]
@@ -135,7 +135,7 @@ const result = validate(value, validations)
 
 const attr = 'type'
 const validations = { contains: { notAllowed: {type:"Fiat", model:"500", color:"white"} } }
-const result = validate(attr, validations) 
+const result = validate(attr, validations)
 /* {
      value: 'type',
      errors: [{ contains: {type:"Fiat", model:"500", color:"white"} }]
@@ -149,7 +149,7 @@ const result = validate(attr, validations)
 
 const value = 'regular'
 const validations = { contains: { notAllowed: ["xlarge", "xxlarge", "tiny"], allowed: ["small", "medium", "large"] } }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: 'regular',
     errors: [{ notContains: ["small", "medium", "large"] }]
@@ -157,7 +157,7 @@ const result = validate(value, validations)
 
 const value = 'xlarge'
 const validations = { contains: { notAllowed: ["xlarge", "xxlarge", "tiny"], allowed: ["small", "medium", "large"] } }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: 'xlarge',
     errors: [
@@ -171,7 +171,7 @@ const result = validate(value, validations)
 
 #### Length
 
-Validates the length of the value. 
+Validates the length of the value.
 
 It is possible to specify length constraints in different ways:
 
@@ -184,7 +184,7 @@ It is possible to specify length constraints in different ways:
 ```javascript
 const value = 'john'
 const validations = { length: { minimum: 5, maximum: 3, is: 1 } }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: 'john',
     errors: [
@@ -201,15 +201,15 @@ Validates constraints to acceptable numeric values.
 
 It must be a valid `Number` JS object. Use `{ type: Number }` to validate if the value is a valid JS `Number` object.
 
-`equalTo` (number) - Specifies the value must be equal to the supplied value. 
+`equalTo` (number) - Specifies the value must be equal to the supplied value.
 
-`greaterThan` (number) - Specifies the value must be greater than the supplied value. 
+`greaterThan` (number) - Specifies the value must be greater than the supplied value.
 
 `greaterThanOrEqualTo` (number) - Specifies the value must be greater than or equal to the supplied value.
 
 `lessThan` (number) - Specifies the value must be less than the supplied value.
 
-`lessThanOrEqualTo` (number) - Specifies the value must be less than or equal to the supplied value. 
+`lessThanOrEqualTo` (number) - Specifies the value must be less than or equal to the supplied value.
 
 `onlyInteger` (boolean) - To specify that only integral numbers are allowed.
 
@@ -225,7 +225,7 @@ const validations = {
         onlyInteger: true
     }
 }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: 123.4,
     errors: [
@@ -244,11 +244,11 @@ Validates constraints to acceptable date and time values.
 
 It must be a valid `Date` time JS object. Use `{ type: Date }` to validate if the value is a valid JS `Date` object.
 
-`before` (date) - A date must be before this value to be valid 
+`before` (date) - A date must be before this value to be valid
 
-`after` (date) - A date must be after this value to be valid 
+`after` (date) - A date must be after this value to be valid
 
-`isAt` (date) - A date must be equal to value to be valid 
+`isAt` (date) - A date must be equal to value to be valid
 
 ```javascript
 const value = new Date('2001-01-02')
@@ -259,7 +259,7 @@ const validations = {
             isAt: new Date('2001-02-02')
         }
 }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: '2001-01-02T00:00:00.000Z',
     errors: [
@@ -280,7 +280,7 @@ For example **john.doe@gmail** is a perfectly valid email but it's most likely j
 ```javascript
 const value = 'just\"not\"right@example.com'
 const validations = { email: true }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: 'just\"not\"right@example.com'
     errors: [{ invalidEmail: true }]
@@ -296,7 +296,7 @@ const result = validate(value, validations)
 const pattern = /^[0-9]{8}$/ // or you can use new RegExp('^[0-9]{8}$')
 const value = '05547-022'
 const validations = { format: pattern }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: '05547-022',
     errors: [{ invalidFormat: true }]
@@ -321,11 +321,11 @@ Native JavaScript types:
 
 `Boolean` - true or false
 
-`Date` - represents a single moment in time in a platform-independent format. 
+`Date` - represents a single moment in time in a platform-independent format.
 
 `Object` - the Object class represents one of JavaScript's data types.
 
-`Array` - the Array class is a object that is used in the construction of arrays. 
+`Array` - the Array class is a object that is used in the construction of arrays.
 
 ```javascript
 const value = '2001'
@@ -371,20 +371,20 @@ const result = validate(value, validations)
 
 #### URL
 
- The URL validator ensures that the input is a valid URL. Validating URLs are pretty tricky but this validator is inspired on a gist that can be found [`here`](https://gist.github.com/dperini/729294). 
+ The URL validator ensures that the input is a valid URL. Validating URLs are pretty tricky but this validator is inspired on a gist that can be found [`here`](https://gist.github.com/dperini/729294).
 
- The following options are supported: 
+ The following options are supported:
 
-`schemes` - (array of string) A list of schemes to allow. If you want to support any scheme you can use a regexp here (for example **[".+"]**). The default value is **["http", "https"]**. 
+`schemes` - (array of string) A list of schemes to allow. If you want to support any scheme you can use a regexp here (for example **[".+"]**). The default value is **["http", "https"]**.
 
-`allowLocal` (boolean) - A boolean that if true allows local hostnames such as **10.0.1.1** or localhost. The default is **false**. 
+`allowLocal` (boolean) - A boolean that if true allows local hostnames such as **10.0.1.1** or localhost. The default is **false**.
 
 `allowDataUrl` (boolean) - A boolean that if true allows data URLs as defined in [`RFC 2397`](https://tools.ietf.org/html/rfc2397). The default is **false**
 
 ```javascript
 const value = "google.com"
 const validations = { url: true }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: 'google.com',
     errors: [{ invalidURL: true }]
@@ -392,7 +392,7 @@ const result = validate(value, validations)
 
 const value = "http://localhost"
 const validations = { url: {allowLocal: true} }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: 'http://localhost',
     errors: []
@@ -401,11 +401,103 @@ const result = validate(value, validations)
 const options = {schemes: ['ftp']}
 const value = "ftp://google.com"
 const validations = { url: options }
-const result = validate(value, validations) 
+const result = validate(value, validations)
 /* {
     value: 'ftp://google.com',
     errors: []
 } */
+```
+
+
+### Custom functions
+
+Execute custom functions to specific validations cases
+
+`propName` (string) - Name of the validation rule returned on error - *this is optional, see below example of usage*
+
+`validation` (function: boolean) - Function that will be called with value argument *this is optional, see below example of usage*
+
+```javascript
+
+const cardNumber = "123467890123456"
+// Single function validation with valid value
+const validations = { custom: { invalidCardNumber: (value) => value.length === 16 } }
+const result = validate(cardNumber, validations);
+/* {
+    value: '123467890123456',
+    errors: []
+} */
+//
+
+const cardNumber = "1234"
+
+// Single function validation with invalid value
+const validations = { custom: { invalidCardNumber: (value) => value.length === 16 } }
+const result = validate(cardNumber, validations);
+/* {
+    value: '1234',
+    errors: [{ "invalidCardNumber": true }]
+} */
+//
+
+// Multiple functions validation with invalid value
+const validations = {
+    custom: {
+        invalidCardNumber: (value) => value.length === 16,
+        invalidDigit: (value) => value[0] !== "2",
+    },
+}
+const result = validate(cardNumber, validations)
+/* {
+    value: '1234',
+    errors: [
+        {  "invalidCardNumber": true },
+        {  "invalidDigit": true },
+    }]
+} */
+//
+
+
+// Multiple functions validation with parcial valid values
+const cardNumber = "12345678910111213"
+
+const validations = {
+    custom: {
+        invalidCardNumber: (value) => value.length === 16,
+        invalidDigit: (value) => value[0] !== "2",
+    },
+}
+const result = validate(cardNumber, validations)
+/* {
+    value: '12345678910111213',
+    errors: [
+        {  "invalidDigit": true },
+    }]
+} */
+//
+
+```
+
+You can also extract validation for variables, if you want to make your code more reusable and customizable
+
+```javascript
+
+// Single Validation with custom propName
+
+const cardNumber = "1234"
+
+const propName = "invalidCardNumber";
+const validation = (value) => value.length === 16
+const validations = {
+    custom: { [propName]: validation }, }
+
+const result = validate(cardNumber, validations);
+/* {
+    value: '1234',
+    errors: [{ "invalidCardNumber": true }]
+} */
+//
+
 ```
 
 ### Null Values
@@ -418,21 +510,21 @@ To ensure your your value is not null, use `allowNull: false` or `presence: true
 
 Validators:
 - [X] presence / null
-- [X] length 
-- [X] type 
+- [X] length
+- [X] type
 - [X] numericality (greater than, equal to, is integer, etc)
 - [X] format - regex
 - [X] date - earliest, latest
 - [X] url
 - [X] email
 - [X] enums/lists - validate if value exists in the given list
-- [X] reject list - validate if value does not exists in the given list 
+- [X] reject list - validate if value does not exists in the given list
 
 Features:
 - [X] Error message only
-- [X] No dependency 
+- [X] No dependency
 - [X] Doc every validators property
-- [ ] Allow a custom functions for validaton
+- [X] Allow a custom functions for validaton
 - [ ] Allow a conditional `if` functions for validaton
 - [ ] Be able to inject a diferent `checker`
 - [ ] Better checks on validator's `params`

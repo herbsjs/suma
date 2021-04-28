@@ -1,7 +1,7 @@
 {
   "name": "suma",
-  "version": "1.0.7",
-  "description": "",
+  "version": "1.0.8",
+  "description": "Suma helps with single value validations emiting error codes only",
   "main": "./src/suma.js",
   "scripts": {
     "test": "mocha --timeout 999999 --colors --recursive ./test",
