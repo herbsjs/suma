@@ -1,6 +1,6 @@
 {
   "name": "suma",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Suma helps with single value validations emiting error codes only",
   "main": "./src/suma.js",
   "scripts": {

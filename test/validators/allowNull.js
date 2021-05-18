@@ -23,7 +23,7 @@ describe('allow null validation', () => {
         ]
         for (const value of samples) {
             // given
-            const validations = { allowNull: false }
+            const validations = { allowNull: true }
             // when
             const ret = validate(value, validations)
             // then
@@ -38,7 +38,7 @@ describe('allow null validation', () => {
         ]
         for (const value of samples) {
             // given
-            const validations = { allowNull: true }
+            const validations = { allowNull: false }
             // when
             const ret = validate(value, validations)
             // then
@@ -53,7 +53,7 @@ describe('allow null validation', () => {
         ]
         for (const value of samples) {
             // given
-            const validations = { allowNull: false }
+            const validations = { allowNull: true }
             // when
             const ret = validate(value, validations)
             // then
