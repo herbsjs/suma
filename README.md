@@ -11,8 +11,9 @@ Extensible, test covered and errors code only!
 Suma does not validate schema or objects, just single values. For schema validation take a look at [`herbjs/gotu`](https://github.com/herbsjs/gotu).
 
 ### Installing
-    $ npm install suma
-
+ ```javascript
+    $ npm install @herbsjs/suma
+ ```
 ### Using
 
 ```javascript
