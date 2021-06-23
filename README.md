@@ -17,7 +17,7 @@ Suma does not validate schema or objects, just single values. For schema validat
 ### Using
 
 ```javascript
-const { validate } = require('suma')
+const { validate } = require('@herbsjs/suma')
 
 const value = null
 const validations = { presence: true }
