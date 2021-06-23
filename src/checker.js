@@ -43,12 +43,12 @@ class Checker {
     return obj instanceof RegExp
   }
 
-  static isObject(obj) {
-    return obj === Object(obj)
-  }
-
   static isInstanceOf(obj, type) {
     return obj instanceof type
+  }
+
+  static isObject(obj) {
+    return obj === Object(obj)
   }
 
   static isEmpty(value) {
