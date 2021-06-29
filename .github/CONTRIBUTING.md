@@ -15,6 +15,23 @@ We're thrilled that you'd like to contribute to this project. Your help is essen
 1. Push and [submit a pull request][pr]
 1. Pat yourself on the back and wait for your pull request to be reviewed and merged.
 
+**Commit Structure**
+All the Herbs organization libraries uses seemantic release and commitizen to :
+
+- Generate changelog
+- Control version
+- Publish to npm via github actions
+Please use this format for commit messages (https://semver.org/). 
+
+To help with this task we have implemented the commitizen to all libraries, just follow those steps:
+
+- `npm install -g commitizen`
+- Write a lot of good code to contribute to herbs 🌿
+- `git add yourChanges`
+- `git cz` or `npm run commit` or `npx cz` instead `git commit` 
+- `git push`
+
+
 **Without write access**
 
 1. [Fork][fork] and clone the repository
