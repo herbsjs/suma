@@ -19,6 +19,10 @@ class Checker {
     )
   }
 
+  static isIterable(value) {
+    return value !== null && typeof value[Symbol.iterator] === 'function'
+  }
+
   static isArrayWithTypeValid(value, typeChecker, type) {
     return value.every((i) => typeChecker(i, type))
   }
