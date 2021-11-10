@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/herbsjs/suma/compare/v1.1.0...v1.2.0) (2021-11-10)
+
+
+### Features
+
+* **validating javascript identifiers:** validating javascript identifiers ([3f86afa](https://github.com/herbsjs/suma/commit/3f86afa6ec6632a818d00bb13626a03103e00681))
+
 # [1.1.0](https://github.com/herbsjs/suma/compare/v1.0.0...v1.1.0) (2021-10-10)
 
 
