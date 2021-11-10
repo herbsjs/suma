@@ -20,7 +20,8 @@ const codes = {
     notContains: 'notContains',
     contains: 'contains',
     invalidURL: 'invalidURL',
-    invalidEmail: 'invalidEmail'
+    invalidEmail: 'invalidEmail',
+    invalidJavascriptIdentifier: 'invalidJavascriptIdentifier'
 }
 
 module.exports = codes

@@ -60,17 +60,17 @@ const result = validate(value, validations)
 
 #### Presence vs allowNull
 
-|               | presence: true    | allowNull: false  |
-| ------------- | ------------------| ----------------  |
-| 'Text'        |       Valid       |       Valid       |
-| 123           |       Valid       |       Valid       |
-| 0             |       Valid       |       Valid       |
-| ' '           |                   |       Valid       |
-| ''            |                   |       Valid       |
-| []            |                   |       Valid       |
-| {}            |                   |       Valid       |
-| null          |                   |                   |
-| undefined     |                   |                   |
+|           | presence: true | allowNull: false |
+| --------- | -------------- | ---------------- |
+| 'Text'    | Valid          | Valid            |
+| 123       | Valid          | Valid            |
+| 0         | Valid          | Valid            |
+| ' '       |                | Valid            |
+| ''        |                | Valid            |
+| []        |                | Valid            |
+| {}        |                | Valid            |
+| null      |                |                  |
+| undefined |                |                  |
 
 
 
@@ -369,6 +369,21 @@ const result = validate(value, validations)
 } */
 ```
 
+
+#### Javascript Identifier
+
+ The javascript identifier validator ensures that the input is a valid javascript identifier. Javascript identifiers validator rules can be found [`here`](https://developer.mozilla.org/pt-BR/docs/Glossary/Identifier).
+
+
+```javascript
+const value = "1GetTest"
+const validations = { javascriptIdentifier: true }
+const result = validate(value, validations)
+/* {
+    value: '1GetTest',
+    errors: [{ invalidJavascriptIdentifier: true }]
+} */
+```
 
 #### URL
 

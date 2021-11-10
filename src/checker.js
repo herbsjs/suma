@@ -158,6 +158,65 @@ class Checker {
     return this.isValidFormat(value, new RegExp(regex, 'i'))
   }
 
+  static isValidJavascriptIdentifier(value) {
+    const validName = /^[$A-Z_][0-9A-Z_$]*$/i
+    const reserved = [
+      'break',
+      'case',
+      'catch',
+      'class',
+      'const',
+      'continue',
+      'debugger',
+      'default',
+      'delete',
+      'do',
+      'else',
+      'export',
+      'extends',
+      'finally',
+      'for',
+      'function',
+      'if',
+      'import',
+      'in',
+      'instanceof',
+      'new',
+      'return',
+      'super',
+      'switch',
+      'this',
+      'throw',
+      'try',
+      'typeof',
+      'var',
+      'void',
+      'while',
+      'with',
+      'yield',
+      'abstract',
+      'boolean',
+      'byte',
+      'char',
+      'double',
+      'final',
+      'float',
+      'goto',
+      'int',
+      'long',
+      'native',
+      'short',
+      'synchronized',
+      'throws',
+      'transient',
+      'true',
+      'false',
+      'volatile'
+    ]
+
+    return validName.test(value) && !reserved.includes(String(value))
+  }
+
   static isTooShort(value, minimum) {
     if (!this.isNumber(minimum))
       throw Error(`Invalid minimum length. It must be a number.`)
