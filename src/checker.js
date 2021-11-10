@@ -159,7 +159,7 @@ class Checker {
   }
 
   static isValidJavascriptIdentifier(value) {
-    const validName = /^[$A-Z_][0-9A-Z_$]*$/i;
+    const validName = /^[$A-Z_][0-9A-Z_$]*$/i
     const reserved = [
       'break',
       'case',
@@ -212,9 +212,9 @@ class Checker {
       'true',
       'false',
       'volatile'
-    ];
+    ]
 
-    return validName.test(value) && !reserved.includes(String(value));
+    return validName.test(value) && !reserved.includes(String(value))
   }
 
   static isTooShort(value, minimum) {
