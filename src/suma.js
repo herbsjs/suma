@@ -7,6 +7,7 @@ const validators = {
   numericality: require('./validators/numericality'),
   datetime: require('./validators/datetime'),
   url: require('./validators/url'),
+  javascriptIdentifier: require('./validators/javascriptIndetifier'),
   email: require('./validators/email'),
   contains: require('./validators/contains'),
   custom: require('./validators/custom'),
