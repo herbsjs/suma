@@ -564,4 +564,4 @@ https://en.wikipedia.org/wiki/Pfaffia_glomerata
 ### License
 
 **Suma** is released under the
-[MIT license](https://github.com/herbsjs/suma/blob/master/LICENSE.md).
+[MIT license](https://github.com/herbsjs/suma/blob/master/LICENSE).
