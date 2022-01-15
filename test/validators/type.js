@@ -87,7 +87,7 @@ describe('type validation', () => {
             [[Boolean], [true, false]],
             [[Date], []],
             [[Date], [new Date()]],
-            [[Date], [new Date(), new Date(2001 - 01 - 01)]],
+            [[Date], [new Date(), new Date('2001-01-01')]],
             [[Object], []],
             [[Object], [{}]],
             [[Object], [{}, new Object()]],

@@ -74,7 +74,7 @@ describe("format validation", () => {
             ["new RegExp('^[0-9]{8}$')", 'f05541030'],
             [null, true],
             [26130014, 26130014],
-            [undefined, 05541030],
+            [undefined, '05541030'],
             [{ regex: /\S+@\S+\.\S+/i}, 'sampleemail.com']
         ]
 
