@@ -247,18 +247,6 @@ console.log(ret)
 /* Output: true */
 ```
 
-### `isTooLong`: validates if the value is less than a defined maximum value
-
-```javascript
-const { checker } = require('@herbsjs/suma')
-
-const value = 'herbs'
-const ret = checker.isTooLong(value, 10)
-console.log(ret)
-
-/* Output: true */
-```
-
 ### `isWrongLength`: validates if the value has a length equal to the defined value
 
 ```javascript
