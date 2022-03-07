@@ -524,7 +524,7 @@ To ensure your value is not null, use `allowNull: false` or `presence: true`.
 
 ### Checkers
 
-Checkers are functions that help the user to validate unique values and formats like url validation or number comparison and etc... To see the complete list of checkers [click here](/docs/checkers.md).
+Checkers functions inspect a value for a content conformity. Ex: Is a email? Is a array? Etc. More here: checkers [click here](/docs/checkers.md).
 
 ## TODO
 
