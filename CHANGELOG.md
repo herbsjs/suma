@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/herbsjs/suma/compare/v1.2.0...v1.3.0) (2022-03-09)
+
+
+### Features
+
+* change checker description ([8e5b0a7](https://github.com/herbsjs/suma/commit/8e5b0a71e12ef2d3e13e8d8f1e857f4be653a311))
+
 # [1.2.0](https://github.com/herbsjs/suma/compare/v1.1.0...v1.2.0) (2021-11-10)
 
 
