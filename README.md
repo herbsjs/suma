@@ -520,7 +520,11 @@ const result = validate(cardNumber, validations);
 
 The `type`, `length`, `numericality`, `format` and `datetime` validators won't validate a value if it's `null` or `undefined`.
 
-To ensure your your value is not null, use `allowNull: false` or `presence: true`.
+To ensure your value is not null, use `allowNull: false` or `presence: true`.
+
+### Checkers
+
+Checkers functions inspect a value for a content conformity. Ex: Is a email? Is a array? Etc. More here: checkers [click here](/docs/checkers.md).
 
 ## TODO
 
