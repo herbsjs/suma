@@ -11,6 +11,7 @@ const validators = {
   email: require('./validators/email'),
   contains: require('./validators/contains'),
   custom: require('./validators/custom'),
+  enum: require('./validators/enum')
 }
 const errorCodes = require('./errorCodes')
 const checker = require('./checker')

@@ -21,6 +21,7 @@ const codes = {
     contains: 'contains',
     invalidURL: 'invalidURL',
     invalidEmail: 'invalidEmail',
+    invalidValue: "invalidValue",
     invalidJavascriptIdentifier: 'invalidJavascriptIdentifier'
 }
 
