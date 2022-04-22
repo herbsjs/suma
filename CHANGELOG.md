@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/herbsjs/suma/compare/v1.3.0...v1.3.1) (2022-04-22)
+
+
+### Bug Fixes
+
+* **deps:** bump ansi-regex from 3.0.0 to 3.0.1 ([589f085](https://github.com/herbsjs/suma/commit/589f085486db5ca26e35f942738c4350b566e84b))
+
 # [1.3.0](https://github.com/herbsjs/suma/compare/v1.2.0...v1.3.0) (2022-03-09)
 
 
