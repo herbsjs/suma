@@ -2,7 +2,7 @@
 
 ![CI Build](https://github.com/herbsjs/suma/workflows/Node.js%20CI/badge.svg?branch=master) [![codecov](https://codecov.io/gh/herbsjs/suma/branch/master/graph/badge.svg)](https://codecov.io/gh/herbsjs/suma)
 
-# Suma
+# SUMA
 
 Suma helps with single value validations.
 
