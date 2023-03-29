@@ -16,7 +16,7 @@ function isPotentialDate(input) {
 
     for (let regex of dateRegexes) {
         if (regex.test(input)) {
-            return true;
+            return true
         }
     }
 
