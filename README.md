@@ -4,11 +4,11 @@
 
 # Suma
 
-Suma helps with single value validations.
+Suma helps with single value [validations](#validators), [checks](#checkers) and [parsing](#parser).
 
 Extensible, test covered and errors code only!
 
-Suma does not validate schema or objects, just single values. For schema validation take a look at [`herbjs/gotu`](https://github.com/herbsjs/gotu).
+For validation Suma does not validate schema or objects, just single values. For schema validation take a look at [`herbjs/gotu`](https://github.com/herbsjs/gotu).
 
 ### Installing
  ```javascript
@@ -526,25 +526,29 @@ To ensure your value is not null, use `allowNull: false` or `presence: true`.
 
 Checkers functions inspect a value for a content conformity. Ex: Is a email? Is a array? Etc. More here: checkers [click here](/docs/checkers.md).
 
+### Parser
+
+`tryParse` is a helper function that tries to parse a value to the expected type.
+
+The parser uses a conservative approach. For the most standard javascript types, it will try to parse the value to the expected type, using the default javascript conversion. For example, if the type is a `Number` and the value is '1' (`String`), it will be parsed to 1 (`Number`). 
+
+However, types like `Date` or `Object` can generate non expected results. In order to avoid this, the parser will not try to parse non trivial conversions. The idea is to avoid surprises during development.
+
+For `Date` values, for example, the parser will try to parse the value only if the string "looks like" a date. For example, if the value is `2019-01-01` (as an example, many other date formats are supported), it will be parsed to a `Date` object. However, if the value is `1`, it will not be parsed. 
+
+Supported types: `Number`, `String`, `Boolean`, `Date`, `Object`, `Array`.
+
+```js
+const { tryParse } = require('@herbsjs/suma')
+
+tryParse('1', Number) // 1
+tryParse('1', Date) // null
+tryParse('2019-01-01', Date) // Date object
+```
+
 ## TODO
 
-Validators:
-- [X] presence / null
-- [X] length
-- [X] type
-- [X] numericality (greater than, equal to, is integer, etc)
-- [X] format - regex
-- [X] date - earliest, latest
-- [X] url
-- [X] email
-- [X] enums/lists - validate if value exists in the given list
-- [X] reject list - validate if value does not exists in the given list
-
 Features:
-- [X] Error message only
-- [X] No dependency
-- [X] Doc every validators property
-- [X] Allow a custom functions for validaton
 - [ ] Allow a conditional `if` functions for validaton
 - [ ] Be able to inject a diferent `checker`
 - [ ] Better checks on validator's `params`
