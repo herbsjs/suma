@@ -14,6 +14,7 @@ const validators = {
 }
 const errorCodes = require('./errorCodes')
 const checker = require('./checker')
+const { tryParse } = require('./parsers/tryParse')
 
 function validate(value, validations) {
   let result = []
@@ -27,4 +28,4 @@ function validate(value, validations) {
   return { value: value, errors: result }
 }
 
-module.exports = { validate, errorCodes, checker }
+module.exports = { validate, errorCodes, checker, tryParse }
