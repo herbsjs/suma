@@ -1,3 +1,16 @@
+# [1.4.0](https://github.com/herbsjs/suma/compare/v1.3.1...v1.4.0) (2023-11-21)
+
+
+### Bug Fixes
+
+* 🐛 update minor dependencies ([6521e02](https://github.com/herbsjs/suma/commit/6521e02c766c6aafb3575745d5d123b33a8c8806))
+* **lint:** remove semicolon ([c90a472](https://github.com/herbsjs/suma/commit/c90a472e0a95bc6424b24a40210b806cbd5fed81))
+
+
+### Features
+
+* **tryparse:** tryParse - a helper function that tries to parse a value to the expected type ([3c163ab](https://github.com/herbsjs/suma/commit/3c163ab4c4d8abbd84cb90894d49adbfe6ee6f2c))
+
 # [1.4.0-beta.2](https://github.com/herbsjs/suma/compare/v1.4.0-beta.1...v1.4.0-beta.2) (2023-11-21)
 
 
