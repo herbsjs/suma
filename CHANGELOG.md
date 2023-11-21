@@ -1,3 +1,10 @@
+# [1.4.0-beta.2](https://github.com/herbsjs/suma/compare/v1.4.0-beta.1...v1.4.0-beta.2) (2023-11-21)
+
+
+### Bug Fixes
+
+* 🐛 update minor dependencies ([6521e02](https://github.com/herbsjs/suma/commit/6521e02c766c6aafb3575745d5d123b33a8c8806))
+
 # [1.4.0-beta.1](https://github.com/herbsjs/suma/compare/v1.3.1...v1.4.0-beta.1) (2023-03-29)
 
 
